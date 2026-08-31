@@ -12,6 +12,8 @@ dependencies = [
     "pyyaml",
     "fastapi",
     "uvicorn",
+    "streamlit",
+    "httpx",
 ]
 
 [project.optional-dependencies]
