@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from avi.judge import RECOMMENDATION_STRENGTHS
 from avi.storage import open_database, read_answers, read_run
 
 
@@ -37,6 +38,13 @@ def render_report(database_path: Path, run_id: str) -> str:
             else f"Boutiqaat was not Mentioned. Answer ids: {answer_ids}."
         )
         lines.extend([f"## {mode.title()} Provider", "", boutiqaat_statement, ""])
+        verdicts = [answer.verdict for answer in mode_answers if answer.verdict is not None]
+        if verdicts:
+            distribution = ", ".join(
+                f"{strength}: {sum(verdict.recommendation_strength == strength for verdict in verdicts)}"
+                for strength in RECOMMENDATION_STRENGTHS
+            )
+            lines.extend([f"Recommendation Strength distribution: {distribution}", ""])
         for answer in mode_answers:
             lines.extend(
                 [
@@ -52,6 +60,15 @@ def render_report(database_path: Path, run_id: str) -> str:
                     "",
                 ]
             )
+            if answer.verdict is not None:
+                lines.extend(
+                    [
+                        f"Recommendation Strength: {answer.verdict.recommendation_strength}",
+                        f"Rank: {answer.verdict.rank}",
+                        f"Brands: {', '.join(answer.verdict.brands)}",
+                        "",
+                    ]
+                )
             if answer.citations:
                 lines.extend(["#### Citations", ""])
                 lines.extend(

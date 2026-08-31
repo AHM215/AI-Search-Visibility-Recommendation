@@ -8,8 +8,16 @@ import yaml
 from pydantic import BaseModel
 
 from avi.detect import detect_mentions
+from avi.judge import judge_answer
 from avi.providers import Provider
-from avi.storage import create_run, open_database, store_answer, store_citation, store_mention
+from avi.storage import (
+    create_run,
+    open_database,
+    store_answer,
+    store_citation,
+    store_mention,
+    store_verdict,
+)
 
 
 class Query(BaseModel):
@@ -88,8 +96,11 @@ def execute_one_query(
             for citation_index, citation in enumerate(answer.citations):
                 store_citation(connection, answer_id, citation, citation_index)
             citation_urls = "\n".join(citation.url for citation in answer.citations)
-            for mention in detect_mentions(answer.text + "\n" + citation_urls, boutiqaat.aliases):
+            mentions = detect_mentions(answer.text + "\n" + citation_urls, boutiqaat.aliases)
+            for mention in mentions:
                 store_mention(connection, answer_id, boutiqaat.name, mention.alias)
+            if mentions:
+                store_verdict(connection, answer_id, judge_answer(answer, provider))
     finally:
         connection.close()
     return run_id

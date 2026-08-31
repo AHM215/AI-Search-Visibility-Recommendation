@@ -4,11 +4,13 @@ from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
+from pydantic import ValidationError
 
 from avi.cli import main
 from avi.citations import Citation, classify_source_type
 from avi.detect import detect_mentions
 from avi.ingest import Query, execute_one_query
+from avi.judge import JudgeVerdict, Verdict
 from avi.providers import (
     Answer,
     CachingProvider,
@@ -215,15 +217,21 @@ def test_grounded_answer_stores_citations_and_renders_modes_separately(tmp_path:
         model_identifier = "openai/gpt-5.2-2025-12-11"
 
         def ask(self, supplied_query: Query, trial_index: int) -> Answer:
-            assert supplied_query.id == "korean-skincare-kuwait"
             assert trial_index == 0
+            if supplied_query.id == "korean-skincare-kuwait":
+                return Answer(
+                    text="Here are places to buy Korean skincare, including Boutiqaat.",
+                    citations=[
+                        Citation("https://www.boutiqat.com/beauty", "Boutiqaat Beauty"),
+                        Citation("https://www.trustpilot.com/review/example.com", "Reviews"),
+                    ],
+                    search_performed=True,
+                )
+            assert supplied_query.id.startswith("judge-")
             return Answer(
-                text="Here are places to buy Korean skincare.",
-                citations=[
-                    Citation("https://www.boutiqat.com/beauty", "Boutiqaat Beauty"),
-                    Citation("https://www.trustpilot.com/review/example.com", "Reviews"),
-                ],
-                search_performed=True,
+                '{"recommendation_strength":"listed","brands":["Boutiqaat"]}',
+                [],
+                False,
             )
 
     run_id = execute_one_query(
@@ -321,7 +329,8 @@ def test_fixture_replay_drives_cli_to_a_traceable_markdown_report(
         )
     except FileNotFoundError:
         pytest.skip(
-            "No ungrounded fixture recording exists. Set OPENAI_API_KEY to the Lightning AI key and run "
+            "No ungrounded fixture recording for an Answer or Judge verdict exists. Set OPENAI_API_KEY "
+            "to the Lightning AI key and run "
             "`python -m avi.cli run korean-skincare-kuwait` to record one."
         )
 
@@ -344,6 +353,7 @@ def test_fixture_replay_drives_cli_to_a_traceable_markdown_report(
     finally:
         connection.close()
     assert answers
+    assert all(answer.verdict is not None for answer in answers if answer.mentioned)
     answer_ids = ", ".join(str(answer.id) for answer in answers)
     mentioned_ids = ", ".join(str(answer.id) for answer in answers if answer.mentioned)
     statement = (
@@ -404,3 +414,213 @@ def test_grounded_fixture_replay_stores_and_renders_citations(
     report_text = capsys.readouterr().out
     assert "## Grounded Provider" in report_text
     assert "#### Citations" in report_text
+
+
+def test_dismissed_boutiqaat_is_mentioned_and_has_a_dismissed_verdict(tmp_path: Path) -> None:
+    database_path = tmp_path / "avi.db"
+
+    class DismissalProvider:
+        mode = "ungrounded"
+        model_identifier = "openai/gpt-5.2-2025-12-11"
+
+        def ask(self, supplied_query: Query, trial_index: int) -> Answer:
+            assert trial_index == 0
+            if supplied_query.id == "korean-skincare-kuwait":
+                return Answer(
+                    "Do not buy from Boutiqaat because it only serves Kuwait.", [], False
+                )
+            assert supplied_query.id.startswith("judge-")
+            return Answer(
+                '{"recommendation_strength":"dismissed","brands":["Boutiqaat"]}',
+                [],
+                False,
+            )
+
+    run_id = execute_one_query(
+        database_path,
+        ROOT / "questions.v1.yaml",
+        ROOT / "brands.yaml",
+        "korean-skincare-kuwait",
+        DismissalProvider(),
+        "dismissal-run",
+        "2026-08-31T12:00:00+00:00",
+    )
+    connection = open_database(database_path)
+    try:
+        answers = read_answers(connection, run_id)
+    finally:
+        connection.close()
+
+    assert len(answers) == 1
+    assert answers[0].mentioned is True
+    assert answers[0].verdict is not None
+    assert answers[0].verdict.recommendation_strength == "dismissed"
+    assert answers[0].verdict.recommendation_strength != "recommended"
+    assert answers[0].verdict.rank == 1
+    assert answers[0].verdict.brands == ["Boutiqaat"]
+    report_text = render_report(database_path, run_id)
+    assert "Recommendation Strength distribution: recommended: 0, listed: 0, passing: 0, dismissed: 1" in report_text
+    assert "Recommendation Strength: dismissed" in report_text
+
+
+def test_answer_without_a_mention_never_reaches_the_judge(tmp_path: Path) -> None:
+    database_path = tmp_path / "avi.db"
+
+    class NoMentionProvider:
+        mode = "ungrounded"
+        model_identifier = "openai/gpt-5.2-2025-12-11"
+
+        def ask(self, supplied_query: Query, trial_index: int) -> Answer:
+            assert trial_index == 0
+            if supplied_query.id == "korean-skincare-kuwait":
+                return Answer("Try a local beauty retailer.", [], False)
+            raise AssertionError("the Judge must not receive an Answer without a Mention")
+
+    run_id = execute_one_query(
+        database_path,
+        ROOT / "questions.v1.yaml",
+        ROOT / "brands.yaml",
+        "korean-skincare-kuwait",
+        NoMentionProvider(),
+        "no-mention-run",
+        "2026-08-31T12:00:00+00:00",
+    )
+    connection = open_database(database_path)
+    try:
+        answers = read_answers(connection, run_id)
+    finally:
+        connection.close()
+
+    assert answers[0].mentioned is False
+    assert answers[0].verdict is None
+
+
+def test_judge_response_with_rank_is_rejected_as_an_extra_field(tmp_path: Path) -> None:
+    class MalformedVerdictProvider:
+        mode = "ungrounded"
+        model_identifier = "openai/gpt-5.2-2025-12-11"
+
+        def ask(self, supplied_query: Query, trial_index: int) -> Answer:
+            assert trial_index == 0
+            if supplied_query.id == "korean-skincare-kuwait":
+                return Answer("Boutiqaat is one option.", [], False)
+            return Answer(
+                '{"recommendation_strength":"recommended","rank":1,"brands":["Boutiqaat"]}',
+                [],
+                False,
+            )
+
+    with pytest.raises(ValidationError) as error_info:
+        execute_one_query(
+            tmp_path / "avi.db",
+            ROOT / "questions.v1.yaml",
+            ROOT / "brands.yaml",
+            "korean-skincare-kuwait",
+            MalformedVerdictProvider(),
+            "unexpected-rank-run",
+            "2026-08-31T12:00:00+00:00",
+        )
+    assert error_info.value.errors()[0]["loc"] == ("rank",)
+
+
+def test_judge_response_without_boutiqaat_in_brands_raises(tmp_path: Path) -> None:
+    class MissingBoutiqaatProvider:
+        mode = "ungrounded"
+        model_identifier = "openai/gpt-5.2-2025-12-11"
+
+        def ask(self, supplied_query: Query, trial_index: int) -> Answer:
+            assert trial_index == 0
+            if supplied_query.id == "korean-skincare-kuwait":
+                return Answer("Boutiqaat is one option.", [], False)
+            return Answer(
+                '{"recommendation_strength":"recommended","brands":["Boots"]}',
+                [],
+                False,
+            )
+
+    with pytest.raises(ValidationError):
+        execute_one_query(
+            tmp_path / "avi.db",
+            ROOT / "questions.v1.yaml",
+            ROOT / "brands.yaml",
+            "korean-skincare-kuwait",
+            MissingBoutiqaatProvider(),
+            "missing-boutiqaat-run",
+            "2026-08-31T12:00:00+00:00",
+        )
+
+
+def test_judged_brand_absent_from_answer_text_raises() -> None:
+    judge_verdict = JudgeVerdict.model_validate(
+        {"recommendation_strength": "recommended", "brands": ["Boutiqaat", "Boots"]}
+    )
+
+    with pytest.raises(ValueError, match="Boots.*absent from Answer text"):
+        Verdict.from_judge_verdict(judge_verdict, "Boutiqaat is one option.")
+
+
+def test_brands_and_rank_follow_answer_order_not_judge_order() -> None:
+    answer_text = "YesStyle is first, then Boutiqaat, then Boots."
+    alphabetical_verdict = JudgeVerdict.model_validate(
+        {"recommendation_strength": "listed", "brands": ["Boots", "Boutiqaat", "YesStyle"]}
+    )
+    reverse_verdict = JudgeVerdict.model_validate(
+        {"recommendation_strength": "listed", "brands": ["YesStyle", "Boutiqaat", "Boots"]}
+    )
+
+    alphabetical_order = Verdict.from_judge_verdict(alphabetical_verdict, answer_text)
+    reverse_order = Verdict.from_judge_verdict(reverse_verdict, answer_text)
+
+    assert alphabetical_order.brands == ["YesStyle", "Boutiqaat", "Boots"]
+    assert reverse_order.brands == alphabetical_order.brands
+    assert alphabetical_order.rank == 2
+
+
+def test_fixture_provider_replays_an_answer_and_judge_verdict_without_network(
+    tmp_path: Path,
+) -> None:
+    cache_directory = tmp_path / "cache"
+
+    class RecordingProvider:
+        mode = "ungrounded"
+        model_identifier = "openai/gpt-5.2-2025-12-11"
+
+        def ask(self, supplied_query: Query, trial_index: int) -> Answer:
+            assert trial_index == 0
+            if supplied_query.id == "korean-skincare-kuwait":
+                return Answer("Boots, YesStyle, and Boutiqaat are options.", [], False)
+            assert supplied_query.id.startswith("judge-")
+            return Answer(
+                '{"recommendation_strength":"recommended","brands":["Boots","YesStyle","Boutiqaat"]}',
+                [],
+                False,
+            )
+
+    execute_one_query(
+        tmp_path / "recorded.db",
+        ROOT / "questions.v1.yaml",
+        ROOT / "brands.yaml",
+        "korean-skincare-kuwait",
+        CachingProvider(RecordingProvider(), cache_directory),
+        "recorded-run",
+        "2026-08-31T12:00:00+00:00",
+    )
+    replay_database_path = tmp_path / "replayed.db"
+    execute_one_query(
+        replay_database_path,
+        ROOT / "questions.v1.yaml",
+        ROOT / "brands.yaml",
+        "korean-skincare-kuwait",
+        FixtureProvider(cache_directory, "openai/gpt-5.2-2025-12-11"),
+        "replayed-run",
+        "2026-08-31T12:00:00+00:00",
+    )
+    connection = open_database(replay_database_path)
+    try:
+        answers = read_answers(connection, "replayed-run")
+    finally:
+        connection.close()
+
+    assert answers[0].verdict is not None
+    assert answers[0].verdict.recommendation_strength == "recommended"
+    assert answers[0].verdict.rank == 3

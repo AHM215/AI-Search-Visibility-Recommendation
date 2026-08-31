@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import sqlite3
+import json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
 from avi.citations import Citation, SourceType, classify_source_type
+from avi.judge import JudgeVerdict, Verdict
 
 
 @dataclass(frozen=True)
@@ -26,6 +28,7 @@ class StoredAnswer:
     mentioned: bool
     search_performed: bool
     citations: list[StoredCitation]
+    verdict: Verdict | None
 
 
 @dataclass(frozen=True)
@@ -67,6 +70,12 @@ def open_database(path: Path) -> sqlite3.Connection:
             title TEXT NOT NULL,
             source_type TEXT NOT NULL,
             PRIMARY KEY (answer_id, citation_index)
+        );
+        CREATE TABLE IF NOT EXISTS verdicts (
+            answer_id INTEGER PRIMARY KEY REFERENCES answers(id),
+            recommendation_strength TEXT NOT NULL,
+            rank INTEGER NOT NULL,
+            brands TEXT NOT NULL
         );
         """
     )
@@ -146,6 +155,21 @@ def store_mention(
     )
 
 
+def store_verdict(connection: sqlite3.Connection, answer_id: int, verdict: Verdict) -> None:
+    connection.execute(
+        """
+        INSERT INTO verdicts (answer_id, recommendation_strength, rank, brands)
+        VALUES (?, ?, ?, ?)
+        """,
+        (
+            answer_id,
+            verdict.recommendation_strength,
+            verdict.rank,
+            json.dumps(verdict.brands, ensure_ascii=False),
+        ),
+    )
+
+
 def read_run(connection: sqlite3.Connection, run_id: str) -> StoredRun:
     row = connection.execute(
         "SELECT id, query_set_version, run_at FROM runs WHERE id = ?", (run_id,)
@@ -160,10 +184,11 @@ def read_answers(connection: sqlite3.Connection, run_id: str) -> list[StoredAnsw
         """
         SELECT a.id, a.query_id, a.provider_mode, a.trial_index, a.model_identifier, a.text,
                EXISTS(
-                   SELECT 1 FROM mentions AS m
-                   WHERE m.answer_id = a.id AND m.brand_name = 'Boutiqaat'
-                ), a.search_performed
+                    SELECT 1 FROM mentions AS m
+                    WHERE m.answer_id = a.id AND m.brand_name = 'Boutiqaat'
+                 ), a.search_performed, v.recommendation_strength, v.brands
         FROM answers AS a
+        LEFT JOIN verdicts AS v ON v.answer_id = a.id
         WHERE a.run_id = ?
         ORDER BY a.id
         """,
@@ -186,6 +211,19 @@ def read_answers(connection: sqlite3.Connection, run_id: str) -> list[StoredAnsw
             )
             for citation_row in citation_rows
         ]
+        verdict = (
+            Verdict.from_judge_verdict(
+                JudgeVerdict.model_validate(
+                    {
+                        "recommendation_strength": str(row[8]),
+                        "brands": json.loads(str(row[9])),
+                    }
+                ),
+                str(row[5]),
+            )
+            if row[8] is not None
+            else None
+        )
         answers.append(
             StoredAnswer(
                 id=int(row[0]),
@@ -197,6 +235,7 @@ def read_answers(connection: sqlite3.Connection, run_id: str) -> list[StoredAnsw
                 mentioned=bool(row[6]),
                 search_performed=bool(row[7]),
                 citations=citations,
+                verdict=verdict,
             )
         )
     return answers
