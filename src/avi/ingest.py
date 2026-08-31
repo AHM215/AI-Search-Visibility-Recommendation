@@ -48,6 +48,7 @@ class Brand(BaseModel):
 
 class BrandFile(BaseModel):
     brands: list[Brand]
+    seed_competitors: list[Brand]
 
 
 @dataclass(frozen=True)
@@ -112,6 +113,10 @@ def _mentions_boutiqaat(answer: Answer, boutiqaat: Brand) -> bool:
     return bool(detect_mentions(answer.text + "\n" + citation_urls, boutiqaat.aliases))
 
 
+def _all_brands(brand_file: BrandFile) -> list[Brand]:
+    return [*brand_file.brands, *brand_file.seed_competitors]
+
+
 def plan_run(
     query_set_path: Path,
     brand_path: Path,
@@ -128,7 +133,8 @@ def plan_run(
     active_providers = _provider_list(providers)
     if not active_providers:
         raise ValueError("A Run requires at least one Provider")
-    boutiqaat = select_brand(load_brands(brand_path), "Boutiqaat")
+    brand_file = load_brands(brand_path)
+    boutiqaat = select_brand(brand_file, "Boutiqaat")
     cached_calls = 0
     live_answer_calls = 0
     live_judge_calls = 0
@@ -190,7 +196,8 @@ def execute_run(
         if query_ids is not None
         else query_set.queries
     )
-    boutiqaat = select_brand(load_brands(brand_path), "Boutiqaat")
+    brand_file = load_brands(brand_path)
+    boutiqaat = select_brand(brand_file, "Boutiqaat")
     connection: sqlite3.Connection = open_database(database_path)
     live_calls = 0
     aborted = False
@@ -221,10 +228,12 @@ def execute_run(
                         for citation_index, citation in enumerate(answer.citations):
                             store_citation(connection, answer_id, citation, citation_index)
                         citation_urls = "\n".join(citation.url for citation in answer.citations)
-                        mentions = detect_mentions(answer.text + "\n" + citation_urls, boutiqaat.aliases)
-                        for mention in mentions:
-                            store_mention(connection, answer_id, boutiqaat.name, mention.alias)
-                    if not mentions:
+                        answer_text = answer.text + "\n" + citation_urls
+                        boutiqaat_mentions = detect_mentions(answer_text, boutiqaat.aliases)
+                        for brand in _all_brands(brand_file):
+                            for mention in detect_mentions(answer_text, brand.aliases):
+                                store_mention(connection, answer_id, brand.name, mention.alias)
+                    if not boutiqaat_mentions:
                         continue
                     judge_query = judge_query_for_answer(answer)
                     allowed, live_calls = _call_within_budget(

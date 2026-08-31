@@ -28,6 +28,7 @@ class StoredAnswer:
     text: str
     mentioned: bool
     search_performed: bool
+    mentions: list[StoredMention]
     citations: list[StoredCitation]
     verdict: Verdict | None
 
@@ -37,6 +38,12 @@ class StoredCitation:
     url: str
     title: str
     source_type: SourceType
+
+
+@dataclass(frozen=True)
+class StoredMention:
+    brand_name: str
+    alias: str
 
 
 def open_database(path: Path) -> sqlite3.Connection:
@@ -214,6 +221,17 @@ def read_answers(connection: sqlite3.Connection, run_id: str) -> list[StoredAnsw
     ).fetchall()
     answers: list[StoredAnswer] = []
     for row in rows:
+        mention_rows = connection.execute(
+            """
+            SELECT brand_name, alias FROM mentions
+            WHERE answer_id = ? ORDER BY brand_name, alias
+            """,
+            (row[0],),
+        ).fetchall()
+        mentions = [
+            StoredMention(brand_name=str(mention_row[0]), alias=str(mention_row[1]))
+            for mention_row in mention_rows
+        ]
         citation_rows = connection.execute(
             """
             SELECT url, title, source_type FROM citations
@@ -248,6 +266,7 @@ def read_answers(connection: sqlite3.Connection, run_id: str) -> list[StoredAnsw
                 text=str(row[5]),
                 mentioned=bool(row[6]),
                 search_performed=bool(row[7]),
+                mentions=mentions,
                 citations=citations,
                 verdict=verdict,
             )

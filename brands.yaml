@@ -7,3 +7,70 @@ brands:
       - بوتيكات
       - boutiqaat.com
       - boutiqat.com
+seed_competitors:
+  - name: Sephora
+    aliases:
+      - Sephora
+      - Sephora Middle East
+      - sephora.com
+      - sephora.ae
+      - سيفورا
+  - name: Ounass
+    aliases:
+      - Ounass
+      - ounass.com
+      - ounass.ae
+      - أُناس
+  - name: Namshi
+    aliases:
+      - Namshi
+      - namshi.com
+      - نمشي
+  - name: Faces
+    aliases:
+      - Faces
+      - Faces Beauty
+      - faces.com
+      - faces.ae
+      - فيسز
+  - name: Nice One
+    aliases:
+      - Nice One
+      - NiceOne
+      - niceonesa.com
+      - niceone.sa
+      - نايس ون
+  - name: Golden Scent
+    aliases:
+      - Golden Scent
+      - GoldenScent
+      - goldenscent.com
+      - جولدن سنت
+  - name: Noon
+    aliases:
+      - Noon
+      - noon.com
+      - نون
+  - name: Amazon
+    aliases:
+      - Amazon
+      - amazon.com
+      - amazon.ae
+      - amazon.sa
+      - أمازون
+  - name: Boots
+    aliases:
+      - Boots
+      - Boots Pharmacy
+      - boots.com
+      - boots.ae
+  - name: iHerb
+    aliases:
+      - iHerb
+      - iherb.com
+      - اي هيرب
+  - name: YesStyle
+    aliases:
+      - YesStyle
+      - Yes Style
+      - yesstyle.com

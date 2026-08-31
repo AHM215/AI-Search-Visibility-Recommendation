@@ -39,6 +39,8 @@ def _parser() -> argparse.ArgumentParser:
     report_command = commands.add_parser("report")
     report_command.add_argument("run_id")
     report_command.add_argument("--database", type=Path, default=ROOT / "avi.db")
+    report_command.add_argument("--query-set", type=Path, default=ROOT / "questions.v1.yaml")
+    report_command.add_argument("--brands", type=Path, default=ROOT / "brands.yaml")
     return parser
 
 
@@ -98,7 +100,14 @@ def main(
         print(result.run_id)
         return 1 if result.status == "aborted" else 0
 
-    print(render_report(arguments_namespace.database, arguments_namespace.run_id))
+    print(
+        render_report(
+            arguments_namespace.database,
+            arguments_namespace.run_id,
+            arguments_namespace.query_set,
+            arguments_namespace.brands,
+        )
+    )
     return 0
 
 
