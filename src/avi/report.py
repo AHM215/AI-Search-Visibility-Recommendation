@@ -5,6 +5,7 @@ from typing import Iterable, Sequence
 
 from avi.ingest import Query, load_brands, load_query_set
 from avi.judge import RECOMMENDATION_STRENGTHS
+from avi.diagnose import Finding, diagnose
 from avi.metrics import MentionSource, Metrics, compute_metrics
 from avi.storage import StoredAnswer, StoredCitation, open_database, read_answers, read_run
 
@@ -41,14 +42,24 @@ def render_report(
         "",
         "Findings describe OpenAI's models, not AI search in general.",
         "",
-        "## Metrics",
-        "",
-        "Metrics are recomputed from stored Answers when this Report is rendered.",
-        "",
-        "### Overall",
-        "",
     ]
-    _append_metrics(lines, compute_metrics(answers, query_set.queries, brand_file.seed_competitors))
+    _append_diagnosis(lines, diagnose(answers, query_set.queries, brand_file.seed_competitors))
+    lines.extend(
+        [
+            "## Metrics",
+            "",
+            "Metrics are recomputed from stored Answers when this Report is rendered.",
+            "Exhaustive Answer id lists are in the Appendix.",
+            "",
+            "### Overall",
+            "",
+        ]
+    )
+    _append_metrics(
+        lines,
+        compute_metrics(answers, query_set.queries, brand_file.seed_competitors),
+        detail=False,
+    )
     query_by_id = {query.id: query for query in query_set.queries}
     dimensions = (
         ("Locale", sorted({query_by_id[answer.query_id].locale for answer in answers}), "locale"),
@@ -56,18 +67,27 @@ def render_report(
         ("Provider Mode", sorted({answer.provider_mode for answer in answers}), "provider_mode"),
     )
     for title, values, keyword in dimensions:
-        lines.extend([f"### By {title}", ""])
+        lines.extend(
+            [
+                f"### By {title}",
+                "",
+                f"| {title} | Mentioned | Relevant Trials | Visibility Rate |",
+                "| --- | ---: | ---: | ---: |",
+            ]
+        )
         for value in values:
-            lines.extend([f"#### {value}", ""])
-            _append_metrics(
-                lines,
-                compute_metrics(
-                    answers,
-                    query_set.queries,
-                    brand_file.seed_competitors,
-                    **{keyword: value},
-                ),
-                )
+            sliced = compute_metrics(
+                answers,
+                query_set.queries,
+                brand_file.seed_competitors,
+                **{keyword: value},
+            )
+            rate = sliced.visibility_rate
+            lines.append(
+                f"| {value} | {len(rate.mentioned_answer_ids)} | "
+                f"{len(rate.relevant_answer_ids)} | {_format_rate(rate.value)} |"
+            )
+        lines.append("")
     _append_citation_pages(lines, answers, query_set.queries)
     lines.extend(["## Answers", ""])
     for mode in ("ungrounded", "grounded"):
@@ -128,10 +148,69 @@ def render_report(
                     for index, citation in enumerate(answer.citations, start=1)
                 )
                 lines.append("")
+    lines.extend(
+        [
+            "## Appendix: traceability",
+            "",
+            "Every figure above, with the Answer ids it derives from.",
+            "",
+            "### Overall",
+            "",
+        ]
+    )
+    _append_metrics(
+        lines, compute_metrics(answers, query_set.queries, brand_file.seed_competitors)
+    )
+    for title, values, keyword in dimensions:
+        for value in values:
+            lines.extend([f"### {title}: {value}", ""])
+            _append_metrics(
+                lines,
+                compute_metrics(
+                    answers,
+                    query_set.queries,
+                    brand_file.seed_competitors,
+                    **{keyword: value},
+                ),
+            )
     return "\n".join(lines)
 
 
-def _append_metrics(lines: list[str], metrics: Metrics) -> None:
+def _append_diagnosis(lines: list[str], findings: tuple[Finding, ...]) -> None:
+    """Render only Findings that Evidence supports; a cause without Evidence is not rendered."""
+    lines.extend(["## Diagnosis", ""])
+    if not findings:
+        lines.extend(
+            ["No candidate cause was supported by Evidence observed in this Run.", ""]
+        )
+        return
+    lines.extend(
+        [
+            "Each claim below rests on Evidence recorded in this Run and names the Answers or "
+            "Citations it comes from. A candidate cause with no supporting Evidence is not shown.",
+            "",
+        ]
+    )
+    for finding in findings:
+        lines.extend([f"### {finding.cause}", "", finding.statement, ""])
+        if finding.answer_ids:
+            lines.append(f"Evidence, Answer ids: {_answer_ids(finding.answer_ids)}.")
+        if finding.citation_urls:
+            shown = finding.citation_urls[:10]
+            more = len(finding.citation_urls) - len(shown)
+            suffix = f" ...and {more} more." if more > 0 else ""
+            lines.append(
+                "Evidence, Citation URLs: " + ", ".join(shown) + "." + suffix
+            )
+        lines.append("")
+    lines.extend(["### What would have to change", ""])
+    lines.extend(
+        f"{position}. {finding.remedy}" for position, finding in enumerate(findings, start=1)
+    )
+    lines.append("")
+
+
+def _append_metrics(lines: list[str], metrics: Metrics, *, detail: bool = True) -> None:
     visibility = metrics.visibility_rate
     cited_not_named_count = len(metrics.cited_not_named_answer_ids)
     cited_not_named_trial_label = "Trial" if cited_not_named_count == 1 else "Trials"
@@ -139,19 +218,29 @@ def _append_metrics(lines: list[str], metrics: Metrics) -> None:
         [
             "**Visibility Rate:** "
             f"{len(visibility.mentioned_answer_ids)}/{len(visibility.relevant_answer_ids)} "
-            f"({_format_rate(visibility.value)}). Relevant Answer ids: "
-            f"{_answer_ids(visibility.relevant_answer_ids)}. Mentioned Answer ids: "
-            f"{_answer_ids(visibility.mentioned_answer_ids)}.",
+            f"({_format_rate(visibility.value)})."
+            + (
+                f" Relevant Answer ids: {_answer_ids(visibility.relevant_answer_ids)}."
+                f" Mentioned Answer ids: {_answer_ids(visibility.mentioned_answer_ids)}."
+                if detail
+                else ""
+            ),
             "",
             "**Cited-not-named:** "
             f"{cited_not_named_count} grounded {cited_not_named_trial_label} cited a Boutiqaat URL "
-            "without naming Boutiqaat. Answer ids: "
-            f"{_answer_ids(metrics.cited_not_named_answer_ids)}.",
+            "without naming Boutiqaat."
+            + (
+                f" Answer ids: {_answer_ids(metrics.cited_not_named_answer_ids)}."
+                if detail
+                else ""
+            ),
             "",
             "**Consistency:**",
         ]
     )
-    if metrics.consistency:
+    if not metrics.consistency:
+        lines.append("- No Relevant Query Trials.")
+    elif detail:
         lines.extend(
             f"- {item.query_id} ({item.provider_mode}): {item.bucket}. Trial Answer ids: "
             f"{_answer_ids(item.answer_ids)}. Mentioned Answer ids: "
@@ -159,32 +248,54 @@ def _append_metrics(lines: list[str], metrics: Metrics) -> None:
             for item in metrics.consistency
         )
     else:
-        lines.append("- No Relevant Query Trials.")
+        buckets = {bucket: 0 for bucket in ("always", "sometimes", "never")}
+        for item in metrics.consistency:
+            buckets[item.bucket] += 1
+        lines.extend(
+            f"- {bucket}: {count} Query/mode pairs" for bucket, count in buckets.items()
+        )
     share_of_voice = metrics.share_of_voice
     lines.extend(
         [
             "",
             "**Share of Voice:** "
             f"{len(share_of_voice.boutiqaat_mentions)}/{len(share_of_voice.seed_mentions)} "
-            f"({_format_rate(share_of_voice.value)}). Boutiqaat Mention Answer ids: "
-            f"{_answer_ids(source.answer_id for source in share_of_voice.boutiqaat_mentions)}. "
-            f"Seed Brand Mention sources: {_mention_sources(share_of_voice.seed_mentions)}.",
+            f"({_format_rate(share_of_voice.value)})."
+            + (
+                " Boutiqaat Mention Answer ids: "
+                f"{_answer_ids(source.answer_id for source in share_of_voice.boutiqaat_mentions)}. "
+                f"Seed Brand Mention sources: {_mention_sources(share_of_voice.seed_mentions)}."
+                if detail
+                else ""
+            ),
             "",
             "**Emergent Brands:**",
         ]
     )
-    if metrics.emergent_brands:
+    if not metrics.emergent_brands:
+        lines.append("- None.")
+    elif detail:
         lines.extend(
             f"- {brand.name}: {len(brand.answer_ids)}. Answer ids: {_answer_ids(brand.answer_ids)}. "
             f"Unlocated Answer ids: {_answer_ids(brand.unlocated_answer_ids)}."
             for brand in metrics.emergent_brands
         )
     else:
-        lines.append("- None.")
+        top = sorted(
+            metrics.emergent_brands, key=lambda brand: len(brand.answer_ids), reverse=True
+        )[:10]
+        lines.extend(f"- {brand.name}: {len(brand.answer_ids)}" for brand in top)
+        if len(metrics.emergent_brands) > len(top):
+            lines.append(
+                f"- ...and {len(metrics.emergent_brands) - len(top)} more; see the Appendix."
+            )
     lines.extend(["", "**Recommendation Strength:"])
     for strength in RECOMMENDATION_STRENGTHS:
         answer_ids = metrics.recommendation_strength.answer_ids_by_strength[strength]
-        lines.append(f"- {strength}: {len(answer_ids)}. Answer ids: {_answer_ids(answer_ids)}.")
+        lines.append(
+            f"- {strength}: {len(answer_ids)}."
+            + (f" Answer ids: {_answer_ids(answer_ids)}." if detail else "")
+        )
     lines.append("")
 
 
