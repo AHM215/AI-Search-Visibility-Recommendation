@@ -1,0 +1,43 @@
+# --- AI assistant tooling, specs and decision records: not part of the deliverable ---
+CLAUDE.md
+AGENTS.md
+.claude/
+.cursor/
+.aider*
+.opencode/
+opencode.json
+opencode.jsonc
+docs/
+.scratch/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Local state and secrets ---
+.env
+.env.*
+*.db
+*.sqlite
+*.sqlite3
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------------------------
+# DO NOT IGNORE cache/
+#
+# The response cache is the fixture corpus the test suite replays (ADR-0001).
+# It is committed deliberately. Adding it here silently breaks every
+# integration test with no error message.
+# ---------------------------------------------------------------------------

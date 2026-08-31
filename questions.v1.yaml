@@ -1,0 +1,8 @@
+version: v1
+queries:
+  - id: korean-skincare-kuwait
+    text: Where can I buy Korean skincare in Kuwait?
+    intent: find_category
+    locale: gcc_en
+    specificity: narrow
+    relevance: relevant
