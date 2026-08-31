@@ -45,6 +45,11 @@ def _parser() -> argparse.ArgumentParser:
     report_command = commands.add_parser("report")
     report_command.add_argument("run_id")
     report_command.add_argument("--database", type=Path, default=ROOT / "avi.db")
+    report_command.add_argument(
+        "--full",
+        action="store_true",
+        help="include every Answer's text and the traceability appendix",
+    )
     report_command.add_argument("--query-set", type=Path, default=ROOT / "questions.v1.yaml")
     report_command.add_argument("--brands", type=Path, default=ROOT / "brands.yaml")
     return parser
@@ -119,6 +124,7 @@ def main(
             arguments_namespace.run_id,
             arguments_namespace.query_set,
             arguments_namespace.brands,
+            full=arguments_namespace.full,
         )
     )
     return 0

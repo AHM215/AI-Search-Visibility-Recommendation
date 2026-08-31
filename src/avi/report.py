@@ -18,7 +18,15 @@ def render_report(
     run_id: str,
     query_set_path: Path = ROOT / "questions.v1.yaml",
     brand_path: Path = ROOT / "brands.yaml",
+    *,
+    full: bool = True,
 ) -> str:
+    """Render the Report.
+
+    ``full`` includes every Answer's text and the traceability appendix: the audit artifact. The
+    short form is the stakeholder document -- same figures, same Diagnosis, same Evidence, without
+    the several thousand lines of raw Answers behind them.
+    """
     connection = open_database(database_path)
     try:
         stored_run = read_run(connection, run_id)
@@ -89,6 +97,17 @@ def render_report(
             )
         lines.append("")
     _append_citation_pages(lines, answers, query_set.queries)
+    if not full:
+        lines.extend(
+            [
+                "---",
+                "",
+                f"Derived from {len(answers)} recorded Answers in Run {stored_run.id}. "
+                "Render with --full for every Answer's text and the traceability appendix.",
+                "",
+            ]
+        )
+        return "\n".join(lines)
     lines.extend(["## Answers", ""])
     for mode in ("ungrounded", "grounded"):
         mode_answers = [answer for answer in answers if answer.provider_mode == mode]

@@ -341,7 +341,7 @@ def test_fixture_replay_drives_cli_to_a_traceable_markdown_report(
     assert run_status == 0
     assert capsys.readouterr().out == "fixture-run\n"
 
-    report_status = main(["report", "fixture-run", "--database", str(database_path)])
+    report_status = main(["report", "fixture-run", "--database", str(database_path), "--full"])
 
     assert report_status == 0
     report_text = capsys.readouterr().out
@@ -420,7 +420,7 @@ def test_grounded_fixture_replay_stores_and_renders_citations(
         for answer in answers
     )
 
-    report_status = main(["report", "grounded-fixture-run", "--database", str(database_path)])
+    report_status = main(["report", "grounded-fixture-run", "--database", str(database_path), "--full"])
 
     assert report_status == 0
     report_text = capsys.readouterr().out
