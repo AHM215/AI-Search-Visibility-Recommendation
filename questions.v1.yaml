@@ -1,8 +1,146 @@
 version: v1
 queries:
+  - id: global-best-beauty-websites
+    text: What are the best websites to buy beauty products online?
+    intent: retailer_discovery
+    locale: global_en
+    specificity: broad
+    relevance: relevant
+  - id: global-buy-korean-skincare
+    text: Where can I buy Korean skincare online?
+    intent: find_category
+    locale: global_en
+    specificity: broad
+    relevance: relevant
+  - id: global-online-beauty-retailers
+    text: Which online beauty retailers have a wide range of brands?
+    intent: retailer_discovery
+    locale: global_en
+    specificity: medium
+    relevance: relevant
+  - id: global-compare-beauty-retailers
+    text: Compare online retailers for makeup, skincare, and fragrance.
+    intent: comparison
+    locale: global_en
+    specificity: medium
+    relevance: relevant
+  - id: global-beauty-gift-delivery
+    text: Where should I order a beauty gift online for delivery?
+    intent: occasion_shopping
+    locale: global_en
+    specificity: medium
+    relevance: relevant
+  - id: global-buy-luxury-fragrance
+    text: Where can I buy luxury fragrance online from a trusted retailer?
+    intent: find_category
+    locale: global_en
+    specificity: narrow
+    relevance: relevant
+  - id: global-buy-sports-equipment
+    text: What is the best website to buy home gym equipment?
+    intent: retailer_discovery
+    locale: global_en
+    specificity: narrow
+    relevance: irrelevant
+  - id: global-vegetarian-dinner-recipe
+    text: What is a good vegetarian dinner recipe for guests?
+    intent: occasion_shopping
+    locale: global_en
+    specificity: narrow
+    relevance: irrelevant
+  - id: gcc-best-online-beauty-stores
+    text: What are the best online beauty stores in the GCC?
+    intent: retailer_discovery
+    locale: gcc_en
+    specificity: broad
+    relevance: relevant
   - id: korean-skincare-kuwait
     text: Where can I buy Korean skincare in Kuwait?
     intent: find_category
     locale: gcc_en
+    specificity: narrow
+    relevance: relevant
+  - id: gcc-buy-makeup-saudi
+    text: Where can I buy makeup online in Saudi Arabia?
+    intent: find_category
+    locale: gcc_en
+    specificity: medium
+    relevance: relevant
+  - id: gcc-compare-beauty-retailers
+    text: Compare online beauty retailers that deliver to Kuwait.
+    intent: comparison
+    locale: gcc_en
+    specificity: medium
+    relevance: relevant
+  - id: gcc-eid-beauty-gift
+    text: Where can I order an Eid beauty gift in the GCC?
+    intent: occasion_shopping
+    locale: gcc_en
+    specificity: medium
+    relevance: relevant
+  - id: gcc-buy-fragrance-kuwait
+    text: Where can I buy niche fragrance online in Kuwait?
+    intent: find_category
+    locale: gcc_en
+    specificity: narrow
+    relevance: relevant
+  - id: gcc-bridal-beauty-shopping
+    text: Which online store is good for bridal beauty shopping in the Gulf?
+    intent: occasion_shopping
+    locale: gcc_en
+    specificity: narrow
+    relevance: relevant
+  - id: gcc-car-insurance-online
+    text: Which website offers the best car insurance in Kuwait?
+    intent: comparison
+    locale: gcc_en
+    specificity: narrow
+    relevance: irrelevant
+  - id: ar-best-beauty-stores
+    text: ما أفضل متاجر التجميل عبر الإنترنت؟
+    intent: retailer_discovery
+    locale: ar
+    specificity: broad
+    relevance: relevant
+  - id: ar-buy-korean-skincare
+    text: أين يمكنني شراء منتجات العناية الكورية بالبشرة عبر الإنترنت؟
+    intent: find_category
+    locale: ar
+    specificity: broad
+    relevance: relevant
+  - id: ar-gcc-beauty-retailers
+    text: ما المتاجر الإلكترونية التي تبيع مستحضرات التجميل في الخليج؟
+    intent: retailer_discovery
+    locale: ar
+    specificity: medium
+    relevance: relevant
+  - id: ar-compare-beauty-retailers
+    text: قارن بين المتاجر الإلكترونية لشراء المكياج والعطور في الكويت.
+    intent: comparison
+    locale: ar
+    specificity: medium
+    relevance: relevant
+  - id: ar-eid-beauty-gift
+    text: من أين أطلب هدية تجميل لعيد الفطر؟
+    intent: occasion_shopping
+    locale: ar
+    specificity: medium
+    relevance: relevant
+  - id: ar-buy-fragrance-kuwait
+    text: أين أشتري عطوراً فاخرة عبر الإنترنت في الكويت؟
+    intent: find_category
+    locale: ar
+    specificity: narrow
+    relevance: relevant
+  - id: ar-bridal-beauty-shopping
+    text: ما أفضل متجر إلكتروني لتجهيز مستحضرات العروس في الخليج؟
+    intent: occasion_shopping
+    locale: ar
+    specificity: narrow
+    relevance: relevant
+  - id: ar-compare-korean-skincare
+    text: ما أفضل المواقع لشراء العناية الكورية بالبشرة مع التوصيل إلى السعودية؟
+    intent: comparison
+    locale: ar
     specificity: narrow
     relevance: relevant

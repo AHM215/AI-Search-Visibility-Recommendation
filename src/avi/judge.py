@@ -5,7 +5,7 @@ import json
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Literal, Self
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, ValidationInfo, model_validator
 
 from avi.detect import first_mention_index
 from avi.providers import Answer, Provider
@@ -30,12 +30,13 @@ class JudgeVerdict(BaseModel):
     brands: list[str] = Field(min_length=1)
 
     @model_validator(mode="after")
-    def brands_identify_boutiqaat(self) -> Self:
+    def brands_identify_boutiqaat(self, info: ValidationInfo) -> Self:
         if any(not brand.strip() for brand in self.brands):
             raise ValueError("Brands must not contain empty names")
         if len(set(self.brands)) != len(self.brands):
             raise ValueError("Brands must not repeat names")
-        if "Boutiqaat" not in self.brands:
+        aliases = info.context.get("boutiqaat_aliases", ["Boutiqaat"]) if info.context else ["Boutiqaat"]
+        if not any(_is_boutiqaat_alias(brand, aliases) for brand in self.brands):
             raise ValueError("Brands must include Boutiqaat")
         return self
 
@@ -44,21 +45,52 @@ class JudgeVerdict(BaseModel):
 class Verdict:
     recommendation_strength: RecommendationStrength
     brands: list[str]
+    unlocated_brands: list[str]
 
     @property
     def rank(self) -> int:
         return self.brands.index("Boutiqaat") + 1
 
     @classmethod
-    def from_judge_verdict(cls, judge_verdict: JudgeVerdict, answer_text: str) -> Self:
+    def from_judge_verdict(
+        cls,
+        judge_verdict: JudgeVerdict,
+        answer_text: str,
+        boutiqaat_aliases: list[str] | None = None,
+    ) -> Self:
+        aliases = boutiqaat_aliases or ["Boutiqaat"]
+        boutiqaat_position = _first_boutiqaat_alias_index(answer_text, aliases)
+        if boutiqaat_position is None:
+            raise ValueError("Boutiqaat Alias is absent from Answer text")
         first_mentions: list[tuple[int, str]] = []
+        unlocated_brands: list[str] = []
+        boutiqaat_located = False
         for brand in judge_verdict.brands:
+            if _is_boutiqaat_alias(brand, aliases):
+                if not boutiqaat_located:
+                    first_mentions.append((boutiqaat_position, "Boutiqaat"))
+                    boutiqaat_located = True
+                continue
             first_mention = first_mention_index(answer_text, brand)
             if first_mention is None:
-                raise ValueError(f"Judge named Brand {brand!r} absent from Answer text")
+                unlocated_brands.append(brand)
+                continue
             first_mentions.append((first_mention, brand))
         brands = [brand for _, brand in sorted(first_mentions, key=lambda item: (item[0], item[1]))]
-        return cls(judge_verdict.recommendation_strength, brands)
+        return cls(judge_verdict.recommendation_strength, brands, unlocated_brands)
+
+
+def _is_boutiqaat_alias(brand: str, aliases: list[str]) -> bool:
+    return brand.casefold() in {alias.casefold() for alias in aliases}
+
+
+def _first_boutiqaat_alias_index(answer_text: str, aliases: list[str]) -> int | None:
+    positions = [
+        position
+        for alias in aliases
+        if (position := first_mention_index(answer_text, alias)) is not None
+    ]
+    return min(positions, default=None)
 
 
 JUDGE_INSTRUCTIONS = """You are the Judge for a Brand measurement Run.
@@ -77,12 +109,12 @@ Answer:
 """
 
 
-def judge_answer(answer: Answer, provider: Provider) -> Verdict:
+def judge_query_for_answer(answer: Answer) -> Query:
     from avi.ingest import Query
 
     instructions = JUDGE_INSTRUCTIONS + answer.text
     answer_digest = hashlib.sha256(instructions.encode("utf-8")).hexdigest()
-    judge_query = Query(
+    return Query(
         id=f"judge-{answer_digest}",
         text=instructions,
         intent="judge",
@@ -90,9 +122,17 @@ def judge_answer(answer: Answer, provider: Provider) -> Verdict:
         specificity="narrow",
         relevance="relevant",
     )
+
+
+def judge_answer(answer: Answer, provider: Provider, boutiqaat_aliases: list[str]) -> Verdict:
+    judge_query = judge_query_for_answer(answer)
     verdict_answer = provider.ask(judge_query, 0)
     try:
         verdict_data = json.loads(verdict_answer.text)
     except json.JSONDecodeError as error:
         raise ValueError("Judge returned invalid JSON") from error
-    return Verdict.from_judge_verdict(JudgeVerdict.model_validate(verdict_data), answer.text)
+    return Verdict.from_judge_verdict(
+        JudgeVerdict.model_validate(verdict_data, context={"boutiqaat_aliases": boutiqaat_aliases}),
+        answer.text,
+        boutiqaat_aliases,
+    )

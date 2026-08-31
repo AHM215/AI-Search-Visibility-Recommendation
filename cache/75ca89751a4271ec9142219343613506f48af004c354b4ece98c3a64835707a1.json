@@ -1,0 +1,31 @@
+{
+  "answer_text": "You’ve got a few reliable options in Kuwait—some local, some online:\n\n## In Kuwait (easy + usually authentic)\n- **Sephora Kuwait (online + stores)**: Carries multiple Korean brands (for example **Laneige**). ([sephora.me](https://www.sephora.me/kw-en/brands/neige/NEIGE?utm_source=openai))  \n  Tip: Search the Sephora Kuwait site by brand name (Laneige, Innisfree, etc.) since the K‑beauty selection changes.\n\n- **Wafi Cosmetics (local retailer)**: Listed by **COSRX** as a Kuwait stockist. ([cosrx.com](https://www.cosrx.com/pages/stores?q=uzlLyQf4&utm_source=openai))  \n\n## Online that ships to Kuwait\n- **iHerb (ships to Kuwait)**: Often has Korean skincare like **COSRX** and delivers to Kuwait with clear shipping thresholds/fees shown on their Kuwait shipping page. ([iherb.com](https://www.iherb.com/shipping/kw?utm_source=openai))  \n\n## If you want Olive Young brands specifically\n- **Olive Young Global doesn’t ship to Kuwait** (so you can’t order directly). ([global.oliveyoung.com](https://global.oliveyoung.com/?trk=nav_logo&utm_source=openai))  \n- You’d need a **proxy/forwarding service** that buys from Olive Young and ships internationally (example: “Ships From Korea” offers an Olive Young buying service). ([shipsfromkorea.com](https://shipsfromkorea.com/stores/olive-young?utm_source=openai))  \n\nIf you tell me **which area you’re in (Kuwait City/Salmiya/etc.)** and **which brands** you want (e.g., COSRX, Beauty of Joseon, Round Lab), I can narrow it down to the best/fastest options and what to search for on each site.",
+  "citations": [
+    {
+      "title": "Laneige ≡ Sephora",
+      "url": "https://www.sephora.me/kw-en/brands/neige/NEIGE?utm_source=openai"
+    },
+    {
+      "title": "Stores – COSRX Official",
+      "url": "https://www.cosrx.com/pages/stores?q=uzlLyQf4&utm_source=openai"
+    },
+    {
+      "title": "iHerb Shipping Info & Policy | iHerb",
+      "url": "https://www.iherb.com/shipping/kw?utm_source=openai"
+    },
+    {
+      "title": "OLIVE YOUNG Global | Korea's No. 1 Health & Beauty Store",
+      "url": "https://global.oliveyoung.com/?trk=nav_logo&utm_source=openai"
+    },
+    {
+      "title": "Buy from Olive Young & Ship Worldwide | Korean Beauty Proxy | Ships From Korea",
+      "url": "https://shipsfromkorea.com/stores/olive-young?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "korean-skincare-kuwait",
+  "query_text": "Where can I buy Korean skincare in Kuwait?",
+  "search_performed": true,
+  "trial_index": 1
+}

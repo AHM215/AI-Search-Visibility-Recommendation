@@ -20,6 +20,7 @@ def render_report(database_path: Path, run_id: str) -> str:
         f"Run: {stored_run.id}",
         f"Query Set version: {stored_run.query_set_version}",
         f"Run timestamp: {stored_run.run_at}",
+        f"Run status: {stored_run.status}",
         "",
         "Findings describe OpenAI's models, not AI search in general.",
         "",
@@ -66,9 +67,11 @@ def render_report(database_path: Path, run_id: str) -> str:
                         f"Recommendation Strength: {answer.verdict.recommendation_strength}",
                         f"Rank: {answer.verdict.rank}",
                         f"Brands: {', '.join(answer.verdict.brands)}",
-                        "",
                     ]
                 )
+                if answer.verdict.unlocated_brands:
+                    lines.append(f"Unlocated Brands: {', '.join(answer.verdict.unlocated_brands)}")
+                lines.append("")
             if answer.citations:
                 lines.extend(["#### Citations", ""])
                 lines.extend(

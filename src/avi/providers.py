@@ -131,18 +131,12 @@ class CachingProvider:
         self.model_identifier = provider.model_identifier
 
     def ask(self, query: Query, trial_index: int) -> Answer:
-        recording_path = _recording_path(
-            self._cache_directory,
-            query,
-            self.mode,
-            trial_index,
-            self.model_identifier,
-        )
-        if recording_path.exists():
-            recording = json.loads(recording_path.read_text(encoding="utf-8"))
-            return _answer_from_recording(recording)
+        recorded_answer = self.recorded_answer(query, trial_index)
+        if recorded_answer is not None:
+            return recorded_answer
 
         answer = self._provider.ask(query, trial_index)
+        recording_path = self._recording_path(query, trial_index)
         recording_path.parent.mkdir(parents=True, exist_ok=True)
         recording = {
             "answer_text": answer.text,
@@ -161,6 +155,25 @@ class CachingProvider:
         )
         return answer
 
+    def is_cached(self, query: Query, trial_index: int) -> bool:
+        return self._recording_path(query, trial_index).exists()
+
+    def recorded_answer(self, query: Query, trial_index: int) -> Answer | None:
+        recording_path = self._recording_path(query, trial_index)
+        if not recording_path.exists():
+            return None
+        recording = json.loads(recording_path.read_text(encoding="utf-8"))
+        return _answer_from_recording(recording)
+
+    def _recording_path(self, query: Query, trial_index: int) -> Path:
+        return _recording_path(
+            self._cache_directory,
+            query,
+            self.mode,
+            trial_index,
+            self.model_identifier,
+        )
+
 
 class FixtureProvider:
     mode: ProviderMode = "ungrounded"
@@ -173,17 +186,29 @@ class FixtureProvider:
         self.mode = mode
 
     def ask(self, query: Query, trial_index: int) -> Answer:
-        recording_path = _recording_path(
+        answer = self.recorded_answer(query, trial_index)
+        if answer is None:
+            raise FileNotFoundError(f"No fixture recording for Query {query.id}")
+        return answer
+
+    def is_cached(self, query: Query, trial_index: int) -> bool:
+        return self._recording_path(query, trial_index).exists()
+
+    def recorded_answer(self, query: Query, trial_index: int) -> Answer | None:
+        recording_path = self._recording_path(query, trial_index)
+        if not recording_path.exists():
+            return None
+        recording = json.loads(recording_path.read_text(encoding="utf-8"))
+        return _answer_from_recording(recording)
+
+    def _recording_path(self, query: Query, trial_index: int) -> Path:
+        return _recording_path(
             self._cache_directory,
             query,
             self.mode,
             trial_index,
             self.model_identifier,
         )
-        if not recording_path.exists():
-            raise FileNotFoundError(f"No fixture recording for Query {query.id}")
-        recording = json.loads(recording_path.read_text(encoding="utf-8"))
-        return _answer_from_recording(recording)
 
 
 def _answer_from_recording(recording: object) -> Answer:

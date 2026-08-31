@@ -13,7 +13,8 @@ def _alias_pattern(alias: str) -> re.Pattern[str]:
     escaped_alias = re.escape(alias)
     if re.search(r"[\u0600-\u06ff]", alias):
         return re.compile(
-            rf"(?<!\w)(?:[وف](?:[بكل])?|[بكل])?{escaped_alias}(?!\w)", re.IGNORECASE
+            rf"(?<!\w)(?:(?:[وف](?:[بكل])?|[بكل])?(?:ال)?|[وف]?لل){escaped_alias}(?!\w)",
+            re.IGNORECASE,
         )
     return re.compile(rf"(?<!\w){escaped_alias}(?!\w)", re.IGNORECASE)
 

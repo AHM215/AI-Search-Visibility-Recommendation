@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import cast
 
 from avi.citations import Citation, SourceType, classify_source_type
-from avi.judge import JudgeVerdict, Verdict
+from avi.judge import RecommendationStrength, Verdict
 
 
 @dataclass(frozen=True)
@@ -15,6 +15,7 @@ class StoredRun:
     id: str
     query_set_version: str
     run_at: str
+    status: str
 
 
 @dataclass(frozen=True)
@@ -46,7 +47,8 @@ def open_database(path: Path) -> sqlite3.Connection:
         CREATE TABLE IF NOT EXISTS runs (
             id TEXT PRIMARY KEY,
             query_set_version TEXT NOT NULL,
-            run_at TEXT NOT NULL
+            run_at TEXT NOT NULL,
+            status TEXT NOT NULL DEFAULT 'completed'
         );
         CREATE TABLE IF NOT EXISTS answers (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -75,7 +77,8 @@ def open_database(path: Path) -> sqlite3.Connection:
             answer_id INTEGER PRIMARY KEY REFERENCES answers(id),
             recommendation_strength TEXT NOT NULL,
             rank INTEGER NOT NULL,
-            brands TEXT NOT NULL
+            brands TEXT NOT NULL,
+            unlocated_brands TEXT NOT NULL DEFAULT '[]'
         );
         """
     )
@@ -84,6 +87,14 @@ def open_database(path: Path) -> sqlite3.Connection:
         connection.execute(
             "ALTER TABLE answers ADD COLUMN search_performed INTEGER NOT NULL DEFAULT 0"
         )
+    run_columns = {str(row[1]) for row in connection.execute("PRAGMA table_info(runs)")}
+    if "status" not in run_columns:
+        connection.execute("ALTER TABLE runs ADD COLUMN status TEXT NOT NULL DEFAULT 'completed'")
+    verdict_columns = {str(row[1]) for row in connection.execute("PRAGMA table_info(verdicts)")}
+    if "unlocated_brands" not in verdict_columns:
+        connection.execute(
+            "ALTER TABLE verdicts ADD COLUMN unlocated_brands TEXT NOT NULL DEFAULT '[]'"
+        )
     return connection
 
 
@@ -91,9 +102,13 @@ def create_run(
     connection: sqlite3.Connection, run_id: str, query_set_version: str, run_at: str
 ) -> None:
     connection.execute(
-        "INSERT INTO runs (id, query_set_version, run_at) VALUES (?, ?, ?)",
+        "INSERT INTO runs (id, query_set_version, run_at, status) VALUES (?, ?, ?, 'running')",
         (run_id, query_set_version, run_at),
     )
+
+
+def set_run_status(connection: sqlite3.Connection, run_id: str, status: str) -> None:
+    connection.execute("UPDATE runs SET status = ? WHERE id = ?", (status, run_id))
 
 
 def store_answer(
@@ -158,25 +173,28 @@ def store_mention(
 def store_verdict(connection: sqlite3.Connection, answer_id: int, verdict: Verdict) -> None:
     connection.execute(
         """
-        INSERT INTO verdicts (answer_id, recommendation_strength, rank, brands)
-        VALUES (?, ?, ?, ?)
+        INSERT INTO verdicts (answer_id, recommendation_strength, rank, brands, unlocated_brands)
+        VALUES (?, ?, ?, ?, ?)
         """,
         (
             answer_id,
             verdict.recommendation_strength,
             verdict.rank,
             json.dumps(verdict.brands, ensure_ascii=False),
+            json.dumps(verdict.unlocated_brands, ensure_ascii=False),
         ),
     )
 
 
 def read_run(connection: sqlite3.Connection, run_id: str) -> StoredRun:
     row = connection.execute(
-        "SELECT id, query_set_version, run_at FROM runs WHERE id = ?", (run_id,)
+        "SELECT id, query_set_version, run_at, status FROM runs WHERE id = ?", (run_id,)
     ).fetchone()
     if row is None:
         raise ValueError(f"Run {run_id!r} does not exist")
-    return StoredRun(id=str(row[0]), query_set_version=str(row[1]), run_at=str(row[2]))
+    return StoredRun(
+        id=str(row[0]), query_set_version=str(row[1]), run_at=str(row[2]), status=str(row[3])
+    )
 
 
 def read_answers(connection: sqlite3.Connection, run_id: str) -> list[StoredAnswer]:
@@ -186,7 +204,7 @@ def read_answers(connection: sqlite3.Connection, run_id: str) -> list[StoredAnsw
                EXISTS(
                     SELECT 1 FROM mentions AS m
                     WHERE m.answer_id = a.id AND m.brand_name = 'Boutiqaat'
-                 ), a.search_performed, v.recommendation_strength, v.brands
+               ), a.search_performed, v.recommendation_strength, v.brands, v.unlocated_brands
         FROM answers AS a
         LEFT JOIN verdicts AS v ON v.answer_id = a.id
         WHERE a.run_id = ?
@@ -212,14 +230,10 @@ def read_answers(connection: sqlite3.Connection, run_id: str) -> list[StoredAnsw
             for citation_row in citation_rows
         ]
         verdict = (
-            Verdict.from_judge_verdict(
-                JudgeVerdict.model_validate(
-                    {
-                        "recommendation_strength": str(row[8]),
-                        "brands": json.loads(str(row[9])),
-                    }
-                ),
-                str(row[5]),
+            Verdict(
+                recommendation_strength=cast(RecommendationStrength, str(row[8])),
+                brands=json.loads(str(row[9])),
+                unlocated_brands=json.loads(str(row[10])),
             )
             if row[8] is not None
             else None
