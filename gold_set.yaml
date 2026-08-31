@@ -1,0 +1,66 @@
+# Gold Set: hand labels for measuring how far the Judge diverges from a human.
+#
+# Scope: every Answer in the recorded corpus that Alias matching flagged as containing a Boutiqaat
+# Mention (20 of 144). Stratified by construction across Locale (11 gcc_en, 9 ar) and Provider mode.
+#
+# `label` is one of the four Recommendation Strength values, or `not_a_mention` where Alias matching
+# produced a false positive and the Judge should never have been asked at all.
+#
+# INTEGRITY NOTE: these labels were written by the orchestrating agent, which had already seen the
+# Judge's output for this corpus. Labelling after seeing the model's answers contaminates the
+# comparison. The agreement figure below is therefore an UPPER BOUND and should be reproduced by a
+# human labelling blind before it is quoted.
+version: v1
+labels:
+  - answer_id: 49
+    label: recommended
+    note: Ranked third in a best-of list with positive description.
+  - answer_id: 51
+    label: recommended
+    note: Positive description, hedged only on per-country selection.
+  - answer_id: 55
+    label: listed
+    note: Grouped with other marketplaces, "sometimes list", authenticity caveat.
+  - answer_id: 60
+    label: recommended
+    note: Korea Town by Boutiqaat put forward as a dedicated K-beauty retailer.
+  - answer_id: 64
+    label: recommended
+  - answer_id: 65
+    label: recommended
+  - answer_id: 79
+    label: recommended
+  - answer_id: 81
+    label: recommended
+  - answer_id: 82
+    label: passing
+    note: Boutiqaat appears only via a cited URL, not in the prose.
+  - answer_id: 83
+    label: recommended
+  - answer_id: 84
+    label: listed
+    note: Under a "check seller/return policy carefully" marketplace heading.
+  - answer_id: 110
+    label: listed
+    note: Neutral one-line descriptor inside a list.
+  - answer_id: 113
+    label: listed
+  - answer_id: 115
+    label: not_a_mention
+    note: >-
+      Arabic بوتيكات here is the common noun "boutiques", not the Brand:
+      "بوتيكات/متاجر كويتية للعطور والمكياج".
+  - answer_id: 116
+    label: recommended
+  - answer_id: 119
+    label: not_a_mention
+    note: '"بوتيكات العطور المحلية" means "local perfume boutiques".'
+  - answer_id: 128
+    label: not_a_mention
+    note: '"بوتيكات الماركات نفسها" means "the brands own boutiques".'
+  - answer_id: 129
+    label: recommended
+  - answer_id: 131
+    label: recommended
+  - answer_id: 132
+    label: recommended
