@@ -8,6 +8,7 @@ from typing import Literal, Sequence
 import yaml
 from pydantic import BaseModel
 
+from avi.citations import PageFetcher, fetch_citation_pages
 from avi.detect import detect_mentions
 from avi.judge import judge_answer, judge_query_for_answer
 from avi.providers import Answer, CachingProvider, FixtureProvider, Provider
@@ -17,6 +18,7 @@ from avi.storage import (
     set_run_status,
     store_answer,
     store_citation,
+    store_citation_page,
     store_mention,
     store_verdict,
 )
@@ -109,8 +111,7 @@ def _provider_list(providers: Provider | Sequence[Provider]) -> list[Provider]:
 
 
 def _mentions_boutiqaat(answer: Answer, boutiqaat: Brand) -> bool:
-    citation_urls = "\n".join(citation.url for citation in answer.citations)
-    return bool(detect_mentions(answer.text + "\n" + citation_urls, boutiqaat.aliases))
+    return bool(detect_mentions(answer.text, boutiqaat.aliases))
 
 
 def _all_brands(brand_file: BrandFile) -> list[Brand]:
@@ -184,6 +185,7 @@ def execute_run(
     query_ids: Sequence[str] | None = None,
     trials_per_query: int = TRIALS_PER_QUERY,
     call_budget: int = DEFAULT_CALL_BUDGET,
+    page_fetcher: PageFetcher | None = None,
 ) -> RunResult:
     if call_budget < 0:
         raise ValueError("Call budget must not be negative")
@@ -214,6 +216,13 @@ def execute_run(
                         aborted = True
                         break
                     answer = provider.ask(query, trial_index)
+                    boutiqaat_mentions = detect_mentions(answer.text, boutiqaat.aliases)
+                    citation_urls = "\n".join(citation.url for citation in answer.citations)
+                    cited_not_named = (
+                        provider.mode == "grounded"
+                        and not boutiqaat_mentions
+                        and bool(detect_mentions(citation_urls, boutiqaat.aliases))
+                    )
                     with connection:
                         answer_id = store_answer(
                             connection,
@@ -224,15 +233,25 @@ def execute_run(
                             provider.model_identifier,
                             answer.text,
                             answer.search_performed,
+                            cited_not_named,
                         )
                         for citation_index, citation in enumerate(answer.citations):
                             store_citation(connection, answer_id, citation, citation_index)
-                        citation_urls = "\n".join(citation.url for citation in answer.citations)
-                        answer_text = answer.text + "\n" + citation_urls
-                        boutiqaat_mentions = detect_mentions(answer_text, boutiqaat.aliases)
                         for brand in _all_brands(brand_file):
-                            for mention in detect_mentions(answer_text, brand.aliases):
+                            for mention in detect_mentions(answer.text, brand.aliases):
                                 store_mention(connection, answer_id, brand.name, mention.alias)
+                    if (
+                        provider.mode == "grounded"
+                        and query.relevance == "relevant"
+                        and not boutiqaat_mentions
+                        and answer.citations
+                    ):
+                        pages = fetch_citation_pages(
+                            answer.citations, page_fetcher, boutiqaat.aliases
+                        )
+                        with connection:
+                            for citation_index, page in enumerate(pages):
+                                store_citation_page(connection, answer_id, citation_index, page)
                     if not boutiqaat_mentions:
                         continue
                     judge_query = judge_query_for_answer(answer)
@@ -264,6 +283,7 @@ def execute_one_query(
     provider: Provider,
     run_id: str,
     run_at: str,
+    page_fetcher: PageFetcher | None = None,
 ) -> str:
     result = execute_run(
         database_path,
@@ -274,5 +294,6 @@ def execute_one_query(
         run_at,
         query_ids=[query_id],
         trials_per_query=1,
+        page_fetcher=page_fetcher,
     )
     return result.run_id

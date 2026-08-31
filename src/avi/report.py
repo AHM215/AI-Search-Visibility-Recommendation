@@ -1,12 +1,12 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Sequence
 
-from avi.ingest import load_brands, load_query_set
+from avi.ingest import Query, load_brands, load_query_set
 from avi.judge import RECOMMENDATION_STRENGTHS
 from avi.metrics import MentionSource, Metrics, compute_metrics
-from avi.storage import open_database, read_answers, read_run
+from avi.storage import StoredAnswer, StoredCitation, open_database, read_answers, read_run
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -67,7 +67,8 @@ def render_report(
                     brand_file.seed_competitors,
                     **{keyword: value},
                 ),
-            )
+                )
+    _append_citation_pages(lines, answers, query_set.queries)
     lines.extend(["## Answers", ""])
     for mode in ("ungrounded", "grounded"):
         mode_answers = [answer for answer in answers if answer.provider_mode == mode]
@@ -123,8 +124,7 @@ def render_report(
             if answer.citations:
                 lines.extend(["#### Citations", ""])
                 lines.extend(
-                    f"{index}. [{citation.title}]({citation.url}) "
-                    f"(Source Type: {citation.source_type})"
+                    _render_citation(index, citation)
                     for index, citation in enumerate(answer.citations, start=1)
                 )
                 lines.append("")
@@ -133,6 +133,8 @@ def render_report(
 
 def _append_metrics(lines: list[str], metrics: Metrics) -> None:
     visibility = metrics.visibility_rate
+    cited_not_named_count = len(metrics.cited_not_named_answer_ids)
+    cited_not_named_trial_label = "Trial" if cited_not_named_count == 1 else "Trials"
     lines.extend(
         [
             "**Visibility Rate:** "
@@ -140,6 +142,11 @@ def _append_metrics(lines: list[str], metrics: Metrics) -> None:
             f"({_format_rate(visibility.value)}). Relevant Answer ids: "
             f"{_answer_ids(visibility.relevant_answer_ids)}. Mentioned Answer ids: "
             f"{_answer_ids(visibility.mentioned_answer_ids)}.",
+            "",
+            "**Cited-not-named:** "
+            f"{cited_not_named_count} grounded {cited_not_named_trial_label} cited a Boutiqaat URL "
+            "without naming Boutiqaat. Answer ids: "
+            f"{_answer_ids(metrics.cited_not_named_answer_ids)}.",
             "",
             "**Consistency:**",
         ]
@@ -179,6 +186,62 @@ def _append_metrics(lines: list[str], metrics: Metrics) -> None:
         answer_ids = metrics.recommendation_strength.answer_ids_by_strength[strength]
         lines.append(f"- {strength}: {len(answer_ids)}. Answer ids: {_answer_ids(answer_ids)}.")
     lines.append("")
+
+
+def _append_citation_pages(
+    lines: list[str], answers: Sequence[StoredAnswer], queries: Sequence[Query]
+) -> None:
+    query_relevance = {query.id: query.relevance for query in queries}
+    absent_answers = [
+        answer
+        for answer in answers
+        if answer.provider_mode == "grounded"
+        and query_relevance.get(answer.query_id) == "relevant"
+        and not answer.mentioned
+    ]
+    lines.extend(["## Citation Pages", ""])
+    if not absent_answers:
+        lines.extend(["No Relevant Grounded Answers where Boutiqaat was Absent.", ""])
+        return
+    lines.append("For Relevant Grounded Answers where Boutiqaat was Absent:")
+    for answer in absent_answers:
+        fetched = [
+            citation
+            for citation in answer.citations
+            if citation.page is not None and citation.page.status != "unfetched"
+        ]
+        present = [
+            citation
+            for citation in fetched
+            if citation.page is not None and citation.page.status == "present"
+        ]
+        unfetched = [
+            citation
+            for citation in answer.citations
+            if citation.page is None or citation.page.status == "unfetched"
+        ]
+        if not fetched:
+            lines.append(
+                f"- Answer {answer.id}: no cited pages were fetched; {len(unfetched)} unfetched."
+            )
+            continue
+        lines.append(
+            f"- Answer {answer.id}: Boutiqaat appears on {len(present)} of {len(fetched)} "
+            f"fetched cited pages, {len(unfetched)} unfetched."
+        )
+    lines.append("")
+
+
+def _render_citation(index: int, citation: StoredCitation) -> str:
+    rendered = (
+        f"{index}. [{citation.title}]({citation.url}) (Source Type: {citation.source_type})"
+    )
+    page = citation.page
+    if page is None:
+        return rendered
+    if page.status == "unfetched":
+        return f"{rendered}; Citation Page: unfetched ({page.unfetched_reason})"
+    return f"{rendered}; Citation Page: {page.status}"
 
 
 def _format_rate(value: float | None) -> str:

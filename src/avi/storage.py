@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
-from avi.citations import Citation, SourceType, classify_source_type
+from avi.citations import Citation, CitationPage, CitationPageStatus, SourceType, classify_source_type
 from avi.judge import RecommendationStrength, Verdict
 
 
@@ -31,6 +31,7 @@ class StoredAnswer:
     mentions: list[StoredMention]
     citations: list[StoredCitation]
     verdict: Verdict | None
+    cited_not_named: bool = False
 
 
 @dataclass(frozen=True)
@@ -38,6 +39,7 @@ class StoredCitation:
     url: str
     title: str
     source_type: SourceType
+    page: CitationPage | None
 
 
 @dataclass(frozen=True)
@@ -65,7 +67,8 @@ def open_database(path: Path) -> sqlite3.Connection:
             trial_index INTEGER NOT NULL,
             model_identifier TEXT NOT NULL,
             text TEXT NOT NULL,
-            search_performed INTEGER NOT NULL DEFAULT 0
+            search_performed INTEGER NOT NULL DEFAULT 0,
+            cited_not_named INTEGER NOT NULL DEFAULT 0
         );
         CREATE TABLE IF NOT EXISTS mentions (
             answer_id INTEGER NOT NULL REFERENCES answers(id),
@@ -80,6 +83,15 @@ def open_database(path: Path) -> sqlite3.Connection:
             source_type TEXT NOT NULL,
             PRIMARY KEY (answer_id, citation_index)
         );
+        CREATE TABLE IF NOT EXISTS citation_pages (
+            answer_id INTEGER NOT NULL,
+            citation_index INTEGER NOT NULL,
+            status TEXT NOT NULL,
+            unfetched_reason TEXT,
+            PRIMARY KEY (answer_id, citation_index),
+            FOREIGN KEY (answer_id, citation_index)
+                REFERENCES citations(answer_id, citation_index)
+        );
         CREATE TABLE IF NOT EXISTS verdicts (
             answer_id INTEGER PRIMARY KEY REFERENCES answers(id),
             recommendation_strength TEXT NOT NULL,
@@ -93,6 +105,10 @@ def open_database(path: Path) -> sqlite3.Connection:
     if "search_performed" not in answer_columns:
         connection.execute(
             "ALTER TABLE answers ADD COLUMN search_performed INTEGER NOT NULL DEFAULT 0"
+        )
+    if "cited_not_named" not in answer_columns:
+        connection.execute(
+            "ALTER TABLE answers ADD COLUMN cited_not_named INTEGER NOT NULL DEFAULT 0"
         )
     run_columns = {str(row[1]) for row in connection.execute("PRAGMA table_info(runs)")}
     if "status" not in run_columns:
@@ -127,12 +143,14 @@ def store_answer(
     model_identifier: str,
     answer_text: str,
     search_performed: bool,
+    cited_not_named: bool = False,
 ) -> int:
     cursor = connection.execute(
         """
         INSERT INTO answers
-            (run_id, query_id, provider_mode, trial_index, model_identifier, text, search_performed)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+            (run_id, query_id, provider_mode, trial_index, model_identifier, text, search_performed,
+             cited_not_named)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
             run_id,
@@ -142,6 +160,7 @@ def store_answer(
             model_identifier,
             answer_text,
             search_performed,
+            cited_not_named,
         ),
     )
     answer_id = cursor.lastrowid
@@ -165,6 +184,18 @@ def store_citation(
             citation.title,
             classify_source_type(citation.url),
         ),
+    )
+
+
+def store_citation_page(
+    connection: sqlite3.Connection, answer_id: int, citation_index: int, page: CitationPage
+) -> None:
+    connection.execute(
+        """
+        INSERT INTO citation_pages (answer_id, citation_index, status, unfetched_reason)
+        VALUES (?, ?, ?, ?)
+        """,
+        (answer_id, citation_index, page.status, page.unfetched_reason),
     )
 
 
@@ -211,7 +242,8 @@ def read_answers(connection: sqlite3.Connection, run_id: str) -> list[StoredAnsw
                EXISTS(
                     SELECT 1 FROM mentions AS m
                     WHERE m.answer_id = a.id AND m.brand_name = 'Boutiqaat'
-               ), a.search_performed, v.recommendation_strength, v.brands, v.unlocated_brands
+               ), a.search_performed, v.recommendation_strength, v.brands, v.unlocated_brands,
+               a.cited_not_named
         FROM answers AS a
         LEFT JOIN verdicts AS v ON v.answer_id = a.id
         WHERE a.run_id = ?
@@ -234,8 +266,11 @@ def read_answers(connection: sqlite3.Connection, run_id: str) -> list[StoredAnsw
         ]
         citation_rows = connection.execute(
             """
-            SELECT url, title, source_type FROM citations
-            WHERE answer_id = ? ORDER BY citation_index
+            SELECT c.url, c.title, c.source_type, cp.status, cp.unfetched_reason
+            FROM citations AS c
+            LEFT JOIN citation_pages AS cp
+                ON cp.answer_id = c.answer_id AND cp.citation_index = c.citation_index
+            WHERE c.answer_id = ? ORDER BY c.citation_index
             """,
             (row[0],),
         ).fetchall()
@@ -244,6 +279,16 @@ def read_answers(connection: sqlite3.Connection, run_id: str) -> list[StoredAnsw
                 url=str(citation_row[0]),
                 title=str(citation_row[1]),
                 source_type=cast(SourceType, str(citation_row[2])),
+                page=(
+                    CitationPage(
+                        status=cast(CitationPageStatus, str(citation_row[3])),
+                        unfetched_reason=(
+                            str(citation_row[4]) if citation_row[4] is not None else None
+                        ),
+                    )
+                    if citation_row[3] is not None
+                    else None
+                ),
             )
             for citation_row in citation_rows
         ]
@@ -269,6 +314,7 @@ def read_answers(connection: sqlite3.Connection, run_id: str) -> list[StoredAnsw
                 mentions=mentions,
                 citations=citations,
                 verdict=verdict,
+                cited_not_named=bool(row[11]),
             )
         )
     return answers

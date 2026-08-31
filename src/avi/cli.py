@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Sequence
 from uuid import uuid4
 
+from avi.citations import CachingPageFetcher, FixturePageFetcher, HttpPageFetcher, PageFetcher
 from avi.ingest import DEFAULT_CALL_BUDGET, execute_run, plan_run
 from avi.providers import (
     CachingProvider,
@@ -48,6 +49,7 @@ def main(
     arguments: Sequence[str] | None = None,
     *,
     provider: Provider | None = None,
+    page_fetcher: PageFetcher | None = None,
     run_at: str | None = None,
     run_id: str | None = None,
 ) -> int:
@@ -87,6 +89,11 @@ def main(
                 f"estimated cost ${plan.estimated_cost_usd:.2f}"
             )
             return 0
+        active_page_fetcher = page_fetcher
+        if active_page_fetcher is None and provider is None:
+            active_page_fetcher = CachingPageFetcher(HttpPageFetcher(), arguments_namespace.cache)
+        elif active_page_fetcher is None and isinstance(provider, FixtureProvider):
+            active_page_fetcher = FixturePageFetcher(arguments_namespace.cache)
         result = execute_run(
             arguments_namespace.database,
             arguments_namespace.query_set,
@@ -96,6 +103,7 @@ def main(
             run_at or datetime.now(timezone.utc).isoformat(),
             query_ids=query_ids,
             call_budget=arguments_namespace.call_budget,
+            page_fetcher=active_page_fetcher,
         )
         print(result.run_id)
         return 1 if result.status == "aborted" else 0

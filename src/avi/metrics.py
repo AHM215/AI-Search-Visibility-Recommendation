@@ -67,6 +67,7 @@ class RecommendationDistribution:
 class Metrics:
     answer_ids: tuple[int, ...]
     visibility_rate: VisibilityRate
+    cited_not_named_answer_ids: tuple[int, ...]
     consistency: tuple[Consistency, ...]
     share_of_voice: ShareOfVoice
     emergent_brands: tuple[EmergentBrand, ...]
@@ -151,6 +152,11 @@ def compute_metrics(
         visibility_rate=VisibilityRate(
             tuple(answer.id for answer in mentioned_answers),
             tuple(answer.id for answer in relevant_answers),
+        ),
+        cited_not_named_answer_ids=tuple(
+            answer.id
+            for answer in selected_answers
+            if answer.provider_mode == "grounded" and answer.cited_not_named
         ),
         consistency=consistency,
         share_of_voice=ShareOfVoice(boutiqaat_mentions, seed_mentions),
