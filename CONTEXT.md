@@ -56,6 +56,12 @@ _Avoid_: Hit, match, appearance
 An Answer actively putting a Brand forward as a place to buy. Strictly narrower than Mention: every Recommendation is a Mention, but a Brand can be Mentioned in passing, or dismissively, without being Recommended.
 _Avoid_: Endorsement, suggestion
 
+**Cited-not-named**:
+A Grounded Answer that cites a URL on Boutiqaat's own domain while never naming Boutiqaat in its
+text. Recorded and reported beside Visibility Rate, never added into it: the model read the site and
+still did not name it, which is a different problem from never having found it.
+_Avoid_: Silent citation, unnamed mention
+
 **Absent**:
 Boutiqaat not Mentioned in an Answer to a Relevant Query. Absence from an Irrelevant Query is not Absence and is never scored.
 _Avoid_: Missing, not found
