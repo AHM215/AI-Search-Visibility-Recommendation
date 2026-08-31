@@ -37,6 +37,11 @@ def _parser() -> argparse.ArgumentParser:
     run_command.add_argument("--dry-run", action="store_true")
     run_command.add_argument("--call-budget", type=int, default=DEFAULT_CALL_BUDGET)
 
+    serve_command = commands.add_parser("serve")
+    serve_command.add_argument("--database", type=Path, default=ROOT / "avi.db")
+    serve_command.add_argument("--host", default="127.0.0.1")
+    serve_command.add_argument("--port", type=int, default=8000)
+
     report_command = commands.add_parser("report")
     report_command.add_argument("run_id")
     report_command.add_argument("--database", type=Path, default=ROOT / "avi.db")

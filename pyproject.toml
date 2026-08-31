@@ -10,12 +10,15 @@ dependencies = [
     "openai",
     "pydantic",
     "pyyaml",
+    "fastapi",
+    "uvicorn",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest",
     "mypy",
+    "httpx",
 ]
 
 [tool.pytest.ini_options]
