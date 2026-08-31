@@ -130,7 +130,9 @@ A generated sample report is in [REPORT.md](REPORT.md).
 Requires Python 3.11+ and an API key in `.env` as `OPENAI_API_KEY=...`.
 
 ```bash
-python -m venv .venv && .venv/bin/python -m pip install -e '.[dev]'
+uv venv .venv && uv pip install --python .venv/bin/python -e '.[dev]'
+# or, where python -m venv ships pip:
+#   python -m venv .venv && .venv/bin/python -m pip install -e '.[dev]'
 export PATH=".venv/bin:$PATH"
 
 python -m avi.cli run --dry-run                 # project the call count and cost, execute nothing
@@ -149,11 +151,16 @@ on breach.
 ```bash
 python -m pytest -q          # 84 tests, no network
 python -m mypy src
-python -m pytest -q -s --gold-database corpus2.db -m gold_set    # opt-in, costs nothing but needs a corpus
+python -m pytest -q -s --gold-database corpus.db -m gold_set     # opt-in; needs a Run database
 ```
 
+The default suite replays the committed `cache/` recordings and needs no network and no API key: it
+passes from a clean clone.
+
 The Gold Set suite is excluded from the default run because it grades a model rather than the
-pipeline. Everything else replays recorded fixtures and makes no network call.
+pipeline. It also needs a **Run database**, which is gitignored as generated output — recreate one
+from the committed recordings with `python -m avi.cli run --database corpus.db`, which makes no
+network call because every Answer is already cached.
 
 ## Layout
 
