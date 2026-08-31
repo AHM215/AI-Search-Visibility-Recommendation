@@ -7,7 +7,13 @@ from typing import Sequence
 from uuid import uuid4
 
 from avi.ingest import execute_one_query
-from avi.providers import CachingProvider, Provider, UngroundedOpenAIProvider
+from avi.providers import (
+    CachingProvider,
+    GroundedOpenAIProvider,
+    Provider,
+    ProviderMode,
+    UngroundedOpenAIProvider,
+)
 from avi.report import render_report
 
 
@@ -24,6 +30,7 @@ def _parser() -> argparse.ArgumentParser:
     run_command.add_argument("--query-set", type=Path, default=ROOT / "questions.v1.yaml")
     run_command.add_argument("--brands", type=Path, default=ROOT / "brands.yaml")
     run_command.add_argument("--cache", type=Path, default=ROOT / "cache")
+    run_command.add_argument("--mode", choices=("ungrounded", "grounded"), default="ungrounded")
 
     report_command = commands.add_parser("report")
     report_command.add_argument("run_id")
@@ -42,7 +49,11 @@ def main(
     if arguments_namespace.command == "run":
         active_provider = provider
         if active_provider is None:
-            active_provider = CachingProvider(UngroundedOpenAIProvider(), arguments_namespace.cache)
+            mode: ProviderMode = arguments_namespace.mode
+            inner_provider = (
+                GroundedOpenAIProvider() if mode == "grounded" else UngroundedOpenAIProvider()
+            )
+            active_provider = CachingProvider(inner_provider, arguments_namespace.cache)
         created_run_id = execute_one_query(
             arguments_namespace.database,
             arguments_namespace.query_set,

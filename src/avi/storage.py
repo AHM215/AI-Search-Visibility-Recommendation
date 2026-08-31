@@ -3,6 +3,9 @@ from __future__ import annotations
 import sqlite3
 from dataclasses import dataclass
 from pathlib import Path
+from typing import cast
+
+from avi.citations import Citation, SourceType, classify_source_type
 
 
 @dataclass(frozen=True)
@@ -21,6 +24,15 @@ class StoredAnswer:
     model_identifier: str
     text: str
     mentioned: bool
+    search_performed: bool
+    citations: list[StoredCitation]
+
+
+@dataclass(frozen=True)
+class StoredCitation:
+    url: str
+    title: str
+    source_type: SourceType
 
 
 def open_database(path: Path) -> sqlite3.Connection:
@@ -40,15 +52,29 @@ def open_database(path: Path) -> sqlite3.Connection:
             provider_mode TEXT NOT NULL,
             trial_index INTEGER NOT NULL,
             model_identifier TEXT NOT NULL,
-            text TEXT NOT NULL
+            text TEXT NOT NULL,
+            search_performed INTEGER NOT NULL DEFAULT 0
         );
         CREATE TABLE IF NOT EXISTS mentions (
             answer_id INTEGER NOT NULL REFERENCES answers(id),
             brand_name TEXT NOT NULL,
             alias TEXT NOT NULL
         );
+        CREATE TABLE IF NOT EXISTS citations (
+            answer_id INTEGER NOT NULL REFERENCES answers(id),
+            citation_index INTEGER NOT NULL,
+            url TEXT NOT NULL,
+            title TEXT NOT NULL,
+            source_type TEXT NOT NULL,
+            PRIMARY KEY (answer_id, citation_index)
+        );
         """
     )
+    answer_columns = {str(row[1]) for row in connection.execute("PRAGMA table_info(answers)")}
+    if "search_performed" not in answer_columns:
+        connection.execute(
+            "ALTER TABLE answers ADD COLUMN search_performed INTEGER NOT NULL DEFAULT 0"
+        )
     return connection
 
 
@@ -69,19 +95,46 @@ def store_answer(
     trial_index: int,
     model_identifier: str,
     answer_text: str,
+    search_performed: bool,
 ) -> int:
     cursor = connection.execute(
         """
         INSERT INTO answers
-            (run_id, query_id, provider_mode, trial_index, model_identifier, text)
-        VALUES (?, ?, ?, ?, ?, ?)
+            (run_id, query_id, provider_mode, trial_index, model_identifier, text, search_performed)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
         """,
-        (run_id, query_id, provider_mode, trial_index, model_identifier, answer_text),
+        (
+            run_id,
+            query_id,
+            provider_mode,
+            trial_index,
+            model_identifier,
+            answer_text,
+            search_performed,
+        ),
     )
     answer_id = cursor.lastrowid
     if answer_id is None:
         raise RuntimeError("SQLite did not return an Answer id")
     return answer_id
+
+
+def store_citation(
+    connection: sqlite3.Connection, answer_id: int, citation: Citation, citation_index: int
+) -> None:
+    connection.execute(
+        """
+        INSERT INTO citations (answer_id, citation_index, url, title, source_type)
+        VALUES (?, ?, ?, ?, ?)
+        """,
+        (
+            answer_id,
+            citation_index,
+            citation.url,
+            citation.title,
+            classify_source_type(citation.url),
+        ),
+    )
 
 
 def store_mention(
@@ -109,22 +162,41 @@ def read_answers(connection: sqlite3.Connection, run_id: str) -> list[StoredAnsw
                EXISTS(
                    SELECT 1 FROM mentions AS m
                    WHERE m.answer_id = a.id AND m.brand_name = 'Boutiqaat'
-               )
+                ), a.search_performed
         FROM answers AS a
         WHERE a.run_id = ?
         ORDER BY a.id
         """,
         (run_id,),
     ).fetchall()
-    return [
-        StoredAnswer(
-            id=int(row[0]),
-            query_id=str(row[1]),
-            provider_mode=str(row[2]),
-            trial_index=int(row[3]),
-            model_identifier=str(row[4]),
-            text=str(row[5]),
-            mentioned=bool(row[6]),
+    answers: list[StoredAnswer] = []
+    for row in rows:
+        citation_rows = connection.execute(
+            """
+            SELECT url, title, source_type FROM citations
+            WHERE answer_id = ? ORDER BY citation_index
+            """,
+            (row[0],),
+        ).fetchall()
+        citations = [
+            StoredCitation(
+                url=str(citation_row[0]),
+                title=str(citation_row[1]),
+                source_type=cast(SourceType, str(citation_row[2])),
+            )
+            for citation_row in citation_rows
+        ]
+        answers.append(
+            StoredAnswer(
+                id=int(row[0]),
+                query_id=str(row[1]),
+                provider_mode=str(row[2]),
+                trial_index=int(row[3]),
+                model_identifier=str(row[4]),
+                text=str(row[5]),
+                mentioned=bool(row[6]),
+                search_performed=bool(row[7]),
+                citations=citations,
+            )
         )
-        for row in rows
-    ]
+    return answers

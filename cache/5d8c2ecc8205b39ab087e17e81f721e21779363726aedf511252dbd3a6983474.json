@@ -1,0 +1,43 @@
+{
+  "answer_text": "Here are reliable places people in Kuwait commonly use to buy **authentic Korean skincare**, split into **local (fast delivery)** vs **international (often cheaper / bigger selection)**.\n\n## Kuwait-based (ships داخل الكويت)\n- **Missha Kuwait (official local site)** – Korean brand store with Kuwait delivery. ([misshakw.com](https://misshakw.com/?utm_source=openai))  \n- **Livish (K‑Beauty collection)** – Kuwait-focused K‑beauty retailer with local delivery options. ([livish.com](https://www.livish.com/collections/k-beauty?utm_source=openai))  \n- **EmartGCC** – Kuwait-based online store focused on Korean skincare brands (e.g., COSRX, Anua, Beauty of Joseon, etc.). ([emartgcc.com](https://emartgcc.com/pages/about-us?utm_source=openai))  \n- **K‑Beauty Kuwait (Almail Al Thahbi)** – local online “K‑Beauty Kuwait” storefront. ([almailco.com](https://www.almailco.com/kbeauty/?utm_source=openai))  \n- **Centrepoint Kuwait (K‑Beauty section)** – online category for Korean skincare in Kuwait. ([centrepointstores.com](https://www.centrepointstores.com/kw/en/c/beautyandpersonalcare-kbeauty-skin?utm_source=openai))  \n- **Splash Kuwait (K‑Beauty section)** – online category with Korean skincare products. ([splashfashions.com](https://www.splashfashions.com/kw/en/c/beautyandpersonalcare-kbeauty?utm_source=openai))  \n- **Talabat (Beauty Care section)** – some Korean brands show up via beauty shops that deliver on Talabat. ([talabat.com](https://www.talabat.com/kuwait/beauty-care?utm_source=openai))  \n\n## International (deliver to Kuwait)\n- **iHerb** – ships to Kuwait and carries many K‑beauty brands (check shipping/duties at checkout). ([iherb.com](https://www.iherb.com/shipping/kw?utm_source=openai))  \n\n### Quick tips to avoid fakes\n- Prefer **official brand stores** (e.g., Missha) or Kuwait retailers that state **direct import/authorized sourcing**.\n- Check for **batch/expiry dates** and avoid listings with unusually low prices.\n\nIf you tell me **your area (Kuwait City/Salmiya/etc.)** and **the brands you want** (e.g., COSRX, Beauty of Joseon, Anua, Round Lab), I can narrow it to the best 2–3 options for fastest delivery and price.",
+  "citations": [
+    {
+      "title": "Missha kw",
+      "url": "https://misshakw.com/?utm_source=openai"
+    },
+    {
+      "title": "K-Beauty in Kuwait | Authentic Korean Skincare & Cosmetics | Livish",
+      "url": "https://www.livish.com/collections/k-beauty?utm_source=openai"
+    },
+    {
+      "title": "About Us – EmartGCC",
+      "url": "https://emartgcc.com/pages/about-us?utm_source=openai"
+    },
+    {
+      "title": "K-Beauty Kuwait | Almail Al Thahbi",
+      "url": "https://www.almailco.com/kbeauty/?utm_source=openai"
+    },
+    {
+      "title": "Shop Korean Skincare Online in Kuwait | Centrepoint",
+      "url": "https://www.centrepointstores.com/kw/en/c/beautyandpersonalcare-kbeauty-skin?utm_source=openai"
+    },
+    {
+      "title": "Buy Korean Skincare Online | Splash Kuwait",
+      "url": "https://www.splashfashions.com/kw/en/c/beautyandpersonalcare-kbeauty?utm_source=openai"
+    },
+    {
+      "title": "BeautyCare delivery service in Kuwait | Talabat",
+      "url": "https://www.talabat.com/kuwait/beauty-care?utm_source=openai"
+    },
+    {
+      "title": "iHerb Shipping Info & Policy | iHerb",
+      "url": "https://www.iherb.com/shipping/kw?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "korean-skincare-kuwait",
+  "query_text": "Where can I buy Korean skincare in Kuwait?",
+  "search_performed": true,
+  "trial_index": 0
+}

@@ -9,7 +9,7 @@ from pydantic import BaseModel
 
 from avi.detect import detect_mentions
 from avi.providers import Provider
-from avi.storage import create_run, open_database, store_answer, store_mention
+from avi.storage import create_run, open_database, store_answer, store_citation, store_mention
 
 
 class Query(BaseModel):
@@ -69,7 +69,7 @@ def execute_one_query(
     query_set = load_query_set(query_set_path)
     query = select_query(query_set, query_id)
     boutiqaat = select_brand(load_brands(brand_path), "Boutiqaat")
-    answer_text = provider.ask(query, 0)
+    answer = provider.ask(query, 0)
 
     connection: sqlite3.Connection = open_database(database_path)
     try:
@@ -82,9 +82,13 @@ def execute_one_query(
                 provider.mode,
                 0,
                 provider.model_identifier,
-                answer_text,
+                answer.text,
+                answer.search_performed,
             )
-            for mention in detect_mentions(answer_text, boutiqaat.aliases):
+            for citation_index, citation in enumerate(answer.citations):
+                store_citation(connection, answer_id, citation, citation_index)
+            citation_urls = "\n".join(citation.url for citation in answer.citations)
+            for mention in detect_mentions(answer.text + "\n" + citation_urls, boutiqaat.aliases):
                 store_mention(connection, answer_id, boutiqaat.name, mention.alias)
     finally:
         connection.close()
