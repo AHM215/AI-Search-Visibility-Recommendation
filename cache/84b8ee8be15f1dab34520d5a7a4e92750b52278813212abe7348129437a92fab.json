@@ -1,0 +1,19 @@
+{
+  "answer_text": "There isn’t one single “best” car‑insurance website in Kuwait for everyone, because the best deal depends heavily on your car, driver age/history, and whether you want **third‑party liability (mandatory)** or **comprehensive**. Practically, the best *website approach* is:\n\n## Best all-around website (to get “best” prices/features fast): **YallaCompare Kuwait (car insurance)**\nIt’s a comparison site that lets you request quotes from multiple insurers and buy online, which is usually the quickest way to find the best-value option for your exact profile. ([app.yallacompare.com](https://app.yallacompare.com/insurance/kwt/ar/car?utm_source=openai))\n\n## Best if you already know the insurer you want (buy direct): **GIG Kuwait portal**\nIf you prefer dealing directly with a large insurer’s own online portal for issuing/renewing (especially for standard motor covers), GIG Kuwait’s portal is a common direct option. ([portal.gig.com.kw](https://portal.gig.com.kw/en/web/gig?utm_source=openai))\n\n---\n\n### If you tell me these 4 things, I’ll point you to the best site for *your* case\n1) Third‑party or comprehensive?  \n2) Your car make/model/year (or approximate value)  \n3) Driver age + years licensed  \n4) Do you need agency repair / replacement car?\n\n(If you just want one site to start with: **YallaCompare**.)",
+  "citations": [
+    {
+      "title": "Car Insurance in Kuwait | yallacompare",
+      "url": "https://app.yallacompare.com/insurance/kwt/ar/car?utm_source=openai"
+    },
+    {
+      "title": "Home - The leading insurance service provider in Kuwait",
+      "url": "https://portal.gig.com.kw/en/web/gig?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "gcc-car-insurance-online",
+  "query_text": "Which website offers the best car insurance in Kuwait?",
+  "search_performed": true,
+  "trial_index": 0
+}

@@ -1,0 +1,10 @@
+{
+  "answer_text": "A good place to order depends mainly on **(1) how fast you need it**, **(2) your budget**, and **(3) whether you want a “gift set” vs. letting them choose**. Here are reliable online options (U.S.) that are typically easy for gifting:\n\n## Best “safe bets” (big selection, good gift packaging)\n- **Sephora** – Huge range, lots of ready-made gift sets, easy-to-shop “gifts” section, and usually solid shipping options.\n- **Ulta Beauty** – Great mix of prestige + affordable brands; good value sets and frequent promos.\n\n## If you want a luxe / elevated gift\n- **Nordstrom Beauty** – Strong premium selection and generally good presentation for gifts.\n- **Dermstore** (skincare-focused) – Good for “treat yourself” skincare, devices, and curated kits.\n\n## If you want something personal (and foolproof)\n- **Gift card** from Sephora/Ulta (digital delivery is instant).\n- **Subscription boxes** (if you’re okay with recurring gifts): options like Ipsy/BoxyCharm-type services can work well, but it’s best when you know they’ll enjoy trying new items.\n\n## If you want “clean beauty” / niche brands\n- **Credo Beauty** (clean-focused)\n- **Brand-direct websites** (e.g., Tatcha, Drunk Elephant, Olaplex, Dyson for hair tools) if you already know what they love—often best for authenticity and brand packaging.\n\n## Quick picks by gift type\n- **Skincare**: Dermstore, Sephora, Nordstrom  \n- **Makeup**: Sephora, Ulta  \n- **Hair tools (premium)**: Dyson (direct) or Sephora/Nordstrom  \n- **Fragrance**: Sephora, Nordstrom (good sampler sets)\n\nIf you tell me:\n1) your **budget**,  \n2) **delivery deadline** (and ZIP code if you want), and  \n3) whether they like **makeup, skincare, hair, or fragrance**,  \nI can recommend 3–5 specific gift options and the best store to order from for your timeline.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "global-beauty-gift-delivery",
+  "query_text": "Where should I order a beauty gift online for delivery?",
+  "search_performed": false,
+  "trial_index": 0
+}

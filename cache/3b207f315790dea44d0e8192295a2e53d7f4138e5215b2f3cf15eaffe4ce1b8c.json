@@ -1,0 +1,10 @@
+{
+  "answer_text": "There isn’t a single “best” car‑insurance website in Kuwait for everyone, because the best choice depends on your car value, coverage type (third‑party vs comprehensive), driver age/claims history, and the insurer’s repair network. Also, many Kuwaiti insurers don’t give a truly final price fully online—often you get a quote request and then a confirmation.\n\nThat said, these are the most reliable places to start online:\n\n## Best for comparing multiple insurers (fastest way to find the best deal)\n- **Wathiq Insurance Broker (Kuwait)** – commonly used to **compare quotes** across insurers and buy policies online.  \n  Website: https://wathiq.com\n\n## Best if you prefer buying directly from established insurers (check their official sites/apps)\n- **GIG Kuwait (Gulf Insurance Group)** – large market presence; good network options depending on policy.  \n  https://www.gig.com.kw\n- **Kuwait Insurance Company (KIC)**  \n  https://www.kic.com.kw\n- **Warba Insurance**  \n  https://warbainsurance.com\n- **Boubyan Takaful** (Takaful/Islamic insurance option)  \n  https://www.boubyantakaful.com\n\n## How to decide “best” (quick checklist)\nWhen comparing quotes, look beyond price at:\n- **Coverage type:** third‑party vs comprehensive\n- **Agency repair vs non‑agency**, and which garages are included\n- **Deductible (excess)** and **replacement car** option\n- **Roadside assistance**\n- **Windshield, flood, and off‑road coverage** (if relevant)\n- **Claims service reputation** and turnaround time\n\nIf you tell me:\n1) your car year/make/model (or approximate value),  \n2) comprehensive vs third‑party, and  \n3) whether you want agency repair,  \nI can suggest which of the options above is most likely to fit best and what to prioritize in the quote.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "ungrounded",
+  "query_id": "gcc-car-insurance-online",
+  "query_text": "Which website offers the best car insurance in Kuwait?",
+  "search_performed": false,
+  "trial_index": 1
+}

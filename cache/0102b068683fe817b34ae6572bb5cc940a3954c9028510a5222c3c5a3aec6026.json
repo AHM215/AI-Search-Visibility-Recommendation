@@ -1,0 +1,10 @@
+{
+  "answer_text": "A good place to order depends on **(1) how fast you need it**, **(2) your budget**, and **(3) whether you want “safe crowd-pleasers” or something more special**. Here are reliable options (US delivery) by scenario:\n\n## Fast + dependable delivery (best for last-minute)\n- **Sephora** — Huge selection, easy gift sets, solid gift packaging options, and straightforward returns.\n- **Ulta Beauty** — Great for value sets plus “prestige + drugstore” in one order.\n- **Amazon (Luxury Beauty / Premium Beauty)** — Fast shipping; stick to items **sold by Amazon or the brand** to reduce counterfeit risk.\n\n## Nicest “giftable” presentation (feels premium)\n- **Nordstrom Beauty** — Strong curated sets and usually excellent packaging/customer service.\n- **Bloomingdale’s / Macy’s (Beauty)** — Often run good promos and gift-with-purchase bundles.\n\n## Best for skincare + “clean beauty” vibes\n- **Credo Beauty** — Good for clean/ethical brands and curated gifting.\n- **Dermstore** — Skews skincare-heavy (great if the recipient likes dermatology-style brands).\n\n## Best if you know the recipient’s favorite brand\nOrdering **direct from the brand** is often the safest for authenticity and packaging:\n- Examples: **Tatcha, Drunk Elephant, Paula’s Choice, The Ordinary/DECIEM, Fenty Beauty, Glossier**, etc.\n\n## Best “can’t-miss” option if you’re unsure\n- **A digital gift card** from **Sephora** or **Ulta** (instant delivery by email, no shipping risk).\n- Or a “universal” item: **lip balm set, hand cream set, mini fragrance sampler, or a skincare mini kit**.\n\n---\n\nIf you tell me:\n1) your **budget**,  \n2) **delivery date** (and ZIP code if you want), and  \n3) what they’re into (**makeup / skincare / fragrance / hair** and any brand favorites),  \nI’ll recommend 2–3 specific places to order from and what to buy.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "global-beauty-gift-delivery",
+  "query_text": "Where should I order a beauty gift online for delivery?",
+  "search_performed": false,
+  "trial_index": 1
+}

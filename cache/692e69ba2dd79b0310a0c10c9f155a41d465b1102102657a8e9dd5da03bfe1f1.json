@@ -1,0 +1,27 @@
+{
+  "answer_text": "There isn’t one single “best” website—it depends on what you’re buying (heavy strength gear vs. cardio vs. budget accessories). For most people building a solid home gym in the US, these are the best bets:\n\n## Best overall for serious strength equipment: **Rogue Fitness**\nBest for racks, barbells, plates, benches, and “buy-it-for-life” core pieces (especially if you’re building a garage gym). ([roguefitness.com](https://www.roguefitness.com/garage-gym?utm_source=openai))\n\n## Best value + strong quality for home-gym builds: **REP Fitness**\nGreat for racks, benches, storage, and a lot of strength accessories—often a strong price-to-quality choice compared with premium brands. ([repfitness.com](https://repfitness.com/?utm_source=openai))\n\n## Best for convenience, fast shipping, and easy returns: **Amazon**\nBest when you want basics quickly (bands, adjustable dumbbells, mats, kettlebells, small accessories). Quality varies a lot by listing, so it’s better for “commodity” gear than a centerpiece rack/cable system. ([tomsguide.com](https://www.tomsguide.com/wellness/workouts/forget-costly-memberships-these-12-gym-essentials-will-help-you-work-out-at-home?utm_source=openai))\n\n## Best if you want to see/try cardio locally (plus delivery/setup options): **Dick’s / local specialty dealers**\nOften better for treadmills, bikes, ellipticals—things where comfort, noise, and service matter. ([plategym.com](https://plategym.com/home-gym-equipment-shops-online-vs-local-in-2026/?utm_source=openai))\n\n### If you tell me:\n1) your budget, 2) your space (apartment/garage), and 3) what you want (strength, cardio, or both),  \nI’ll recommend the single best site (or 2-site combo) for your exact shopping list.",
+  "citations": [
+    {
+      "title": "Garage Gym / Home Gym Equipment | Rogue Fitness",
+      "url": "https://www.roguefitness.com/garage-gym?utm_source=openai"
+    },
+    {
+      "title": "REP Fitness | Home Gym Equipment",
+      "url": "https://repfitness.com/?utm_source=openai"
+    },
+    {
+      "title": "Forget costly memberships: These 12 gym essentials will help you work out at home",
+      "url": "https://www.tomsguide.com/wellness/workouts/forget-costly-memberships-these-12-gym-essentials-will-help-you-work-out-at-home?utm_source=openai"
+    },
+    {
+      "title": "Home Gym Equipment Shops: Online vs Local in 2026 Â· PlateGym",
+      "url": "https://plategym.com/home-gym-equipment-shops-online-vs-local-in-2026/?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "global-buy-sports-equipment",
+  "query_text": "What is the best website to buy home gym equipment?",
+  "search_performed": true,
+  "trial_index": 2
+}

@@ -1,0 +1,31 @@
+{
+  "answer_text": "There isn’t one single “best” website for *all* home gym equipment—because the best choice depends on whether you prioritize **premium quality**, **best value**, **fast shipping/returns**, or **big cardio machines**. Here are the best picks by scenario (US-focused):\n\n## Best overall (strength / “buy once” quality)\n**Rogue Fitness**  \nBest if you want commercial-grade barbells, plates, racks, and attachments with a huge ecosystem (you’ll also see lots of compatibility across the home-gym world). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Rogue_Fitness?utm_source=openai))\n\n## Best value for most home gyms (strength)\n**REP Fitness**  \nOften the sweet spot of price + fit/finish + rack ecosystem for typical garage/home gym builds; frequently recommended as the default “best value” option. ([reddit.com](https://www.reddit.com/r/GarageGym/comments/1vb32qf/building_my_home_gym_and_completely_overwhelmed/?utm_source=openai))\n\n## Best budget (strength, but be pickier item-by-item)\n**Titan Fitness**  \nGreat for stretching a budget (especially accessories/attachments), but it’s smarter to judge product-by-product rather than assuming everything is top tier. ([reddit.com](https://www.reddit.com/r/GarageGym/comments/1tivplx/whos_the_value_alternative_to_rep/?utm_source=openai))\n\n## Good “middle” option (strong gear + frequent promos)\n**Fringe Sport**  \nSolid all-around selection for home gyms and often runs sales/promos; commonly mentioned alongside Rogue/REP/Titan as a reputable option. ([fringesport.com](https://www.fringesport.com/?utm_source=openai))\n\n## Best for easy returns and general shopping (but watch marketplace sellers)\n**Walmart / Amazon / Dick’s**  \nGood when you want quick delivery, simple returns, and you’re buying mainstream items (dumbbells, mats, basic benches). The main caution is **third‑party marketplace sellers** and inconsistent policies/quality across listings. ([consumerreports.org](https://www.consumerreports.org/shopping/how-to-be-a-smarter-shopper-right-now/?utm_source=openai))\n\n---\n\n### If you tell me these 3 things, I’ll recommend the single best site (or 2-site combo) for you:\n1) What are you buying (rack/bar/plates vs dumbbells vs cardio machine)?  \n2) Budget range?  \n3) Your ZIP code (for shipping cost + whether local pickup matters)?",
+  "citations": [
+    {
+      "title": "Rogue Fitness",
+      "url": "https://en.wikipedia.org/wiki/Rogue_Fitness?utm_source=openai"
+    },
+    {
+      "title": "Building my home gym and completely overwhelmed",
+      "url": "https://www.reddit.com/r/GarageGym/comments/1vb32qf/building_my_home_gym_and_completely_overwhelmed/?utm_source=openai"
+    },
+    {
+      "title": "Who's the Value alternative to REP",
+      "url": "https://www.reddit.com/r/GarageGym/comments/1tivplx/whos_the_value_alternative_to_rep/?utm_source=openai"
+    },
+    {
+      "title": "Fringe Sport: Improving Lives Through Strength",
+      "url": "https://www.fringesport.com/?utm_source=openai"
+    },
+    {
+      "title": "How to Be a Smarter Shopper Right Now - Consumer Reports",
+      "url": "https://www.consumerreports.org/shopping/how-to-be-a-smarter-shopper-right-now/?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "global-buy-sports-equipment",
+  "query_text": "What is the best website to buy home gym equipment?",
+  "search_performed": true,
+  "trial_index": 1
+}

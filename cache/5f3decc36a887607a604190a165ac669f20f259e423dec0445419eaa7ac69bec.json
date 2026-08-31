@@ -1,0 +1,10 @@
+{
+  "answer_text": "Several online beauty retailers are known for carrying a broad mix of brands (from mass to prestige, indie, and pro). Here are some of the best-known options:\n\n- **Sephora** – Very wide brand selection across makeup, skincare, hair, and fragrance; lots of exclusives.\n- **Ulta Beauty** – Huge range spanning **drugstore + prestige** in one place; also strong haircare tools/salon brands.\n- **Cult Beauty** (UK, ships internationally) – Wide assortment with many trending/indie and dermatologist-loved brands.\n- **Lookfantastic** (UK, ships internationally) – Large catalog across skincare, hair, and beauty; frequent promos and bundles.\n- **Space NK** (UK/US, ships internationally) – Curated but still broad, especially for prestige skincare and makeup.\n- **Dermstore** – Strong selection of clinical/dermatologist-backed skincare plus some hair and devices.\n- **Bluemercury** – Premium/clean-leaning assortment with many well-known luxury brands.\n- **Beauty Bay** (UK, ships internationally) – Big range, especially makeup and indie brands; also carries its own line.\n- **Revolve Beauty** – Smaller than Sephora/Ulta but still diverse, with a mix of prestige and “clean” brands.\n- **Harrods Beauty / Selfridges Beauty** (UK, ships internationally) – Very broad luxury brand range, including niche fragrance.\n\nIf you tell me your country/region and whether you prefer **drugstore, prestige, indie, clean, or fragrance-heavy** retailers, I can narrow this to the best options that ship to you.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "ungrounded",
+  "query_id": "global-online-beauty-retailers",
+  "query_text": "Which online beauty retailers have a wide range of brands?",
+  "search_performed": false,
+  "trial_index": 2
+}

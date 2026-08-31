@@ -1,0 +1,10 @@
+{
+  "answer_text": "There isn’t one single “best” site for everyone—what’s best depends on whether you prioritize price, quality, selection, shipping, or support. Here are the most reliable options by use case:\n\n## Best overall (broad selection + good fulfillment)\n- **Rogue Fitness (roguefitness.com)** – Excellent quality (especially racks, barbells, plates), strong customer support, lots of parts/attachments. Often a top pick if you want gear that lasts.\n- **REP Fitness (repfitness.com)** – Great value-to-quality for racks, benches, storage, and attachments; often cheaper than Rogue for comparable home-gym setups.\n\n## Best for budget / fast shipping\n- **Amazon (amazon.com)** – Fast delivery and easy returns; quality varies a lot by brand, so stick to well-reviewed, known brands.\n- **Walmart (walmart.com)** – Competitive pricing; good for basics (dumbbells, bands, benches), but verify seller and return policy.\n\n## Best for cardio machines\n- **Dick’s Sporting Goods (dickssportinggoods.com)** – Solid selection and delivery/assembly options depending on location.\n- **Costco (costco.com)** – Good deals and customer-friendly returns; selection changes frequently.\n\n## Best for premium / specialty pieces\n- **Eleiko (eleiko.com)** – High-end barbells/plates; excellent but expensive.\n- **Sorinex (sorinex.com)** – Premium racks and custom/sport-performance setups.\n\n## Best used (big savings)\n- **Facebook Marketplace** – Often the best prices locally; inspect before buying.\n- **Craigslist / OfferUp** – Good deals; varies by area.\n- **Play It Again Sports (playitagainsports.com)** – Used equipment with some level of store screening.\n\n### If you tell me:\n1) your budget, 2) what you want (rack/barbell/dumbbells/cardio), and 3) your country/region,  \nI can recommend the best 2–3 sites and specific brands/models to target.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "ungrounded",
+  "query_id": "global-buy-sports-equipment",
+  "query_text": "What is the best website to buy home gym equipment?",
+  "search_performed": false,
+  "trial_index": 1
+}

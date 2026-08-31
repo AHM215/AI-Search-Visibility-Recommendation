@@ -1,0 +1,31 @@
+{
+  "answer_text": "Here are some reliable places to buy **makeup online with delivery in Saudi Arabia (KSA)**:\n\n## Beauty retailers (focused on makeup/beauty)\n- **Sephora Middle East (Saudi store)** – prestige makeup, skincare, fragrance (ships in KSA). ([sephora.me](https://www.sephora.me/sa-en?___store=sa_ar&utm_source=openai))  \n- **FACES KSA** – major regional beauty retailer with a strong makeup selection and KSA online store. ([faces.sa](https://www.faces.sa/en?utm_source=openai))  \n- **Nice One KSA** – large Saudi beauty e-commerce store covering makeup + lots of personal care. ([niceonesa.com](https://niceonesa.com/en/all-products?page=4%2F&utm_source=openai))  \n- **Golden Scent** – well-known in KSA for perfumes and also carries beauty products; has KSA delivery info in their help pages. ([goldenscent.com](https://www.goldenscent.com/en/?utm_source=openai))  \n\n## General marketplaces (good selection, but check the seller)\n- **noon (KSA)** – big selection and fast delivery options; since it’s a marketplace, check that the item is **sold by noon / official store** and review authenticity notes. ([noon.com](https://www.noon.com/saudi-en/beauty/makeup-16142/?utm_source=openai))  \n\nIf you tell me **your city (e.g., Riyadh/Jeddah/Dammam)** and whether you want **luxury (Dior, Huda Beauty, etc.)** or **drugstore (Maybelline, L’Oréal, etc.)**, I can narrow it to the best 2–3 options and what to watch for (returns, authenticity, delivery speed).",
+  "citations": [
+    {
+      "title": "Beauty Products, Makeup, Perfume & Skincare ≡ Sephora",
+      "url": "https://www.sephora.me/sa-en?___store=sa_ar&utm_source=openai"
+    },
+    {
+      "title": "Shop for Perfume, Makeup, Skin Care & Cosmetics | FACES KSA",
+      "url": "https://www.faces.sa/en?utm_source=openai"
+    },
+    {
+      "title": "All Products | Nice One KSA",
+      "url": "https://niceonesa.com/en/all-products?page=4%2F&utm_source=openai"
+    },
+    {
+      "title": "Perfumes and Beauty Products at Goldenscent",
+      "url": "https://www.goldenscent.com/en/?utm_source=openai"
+    },
+    {
+      "title": "Makeup KSA | Best Price Offers | Riyadh, Jeddah",
+      "url": "https://www.noon.com/saudi-en/beauty/makeup-16142/?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "gcc-buy-makeup-saudi",
+  "query_text": "Where can I buy makeup online in Saudi Arabia?",
+  "search_performed": true,
+  "trial_index": 2
+}

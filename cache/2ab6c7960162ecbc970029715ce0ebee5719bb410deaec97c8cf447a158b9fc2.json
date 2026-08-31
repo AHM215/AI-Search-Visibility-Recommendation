@@ -1,0 +1,39 @@
+{
+  "answer_text": "Here are reliable places you can order an **Eid beauty gift** with delivery across **GCC countries** (UAE, Saudi, Kuwait, Qatar, Bahrain, Oman). Availability and delivery fees vary by country at checkout.\n\n## Beauty gift sets (skincare/body care)\n- **Pinky Cosmetics (UAE-based)** — ready-to-gift beauty bundles and sets; ships to **UAE, Saudi, Kuwait, Qatar, Oman, Bahrain**. ([pinky-cosmetics.com](https://pinky-cosmetics.com/products/beauty-bundle-gift-set-7-piece-complete-care-package?utm_source=openai))  \n- **Bodiva (Kuwait-based)** — beauty shopping with delivery in **Kuwait** and to **GCC** (shipping policy lists Saudi/UAE/Qatar/Bahrain/Oman). ([trybodiva.com](https://trybodiva.com/en/pages/shipping-and-delivery?utm_source=openai))  \n\n## Perfume / fragrance gift sets (very popular for Eid)\n- **Emirates Pride** — perfume gift sets with delivery across **UAE, Saudi Arabia, and Oman**. ([emiratespride.com](https://emiratespride.com/ae/gift-sets/?utm_source=openai))  \n- **TEABALATER** — gift sets and ships to GCC (shipping terms shown on product page). ([teabalater.com](https://teabalater.com/product/al-saada-set/?utm_source=openai))  \n- **Oudh Al Anfar Perfumes** — fragrance gift collections with shipping across **KSA, Oman, Kuwait, Bahrain, Qatar** (and more depending on checkout). ([oudhalanfar.com](https://oudhalanfar.com/products/abyaat-collection?utm_source=openai))  \n\n## “Eid gift box” options that deliver across GCC\n(These are gift boxes rather than cosmetics, but they’re explicitly sold as Eid gifts and deliver to multiple GCC countries.)\n- **Cantata (Dubai)** — “EID Gift Box” collections; delivery options include multiple **GCC countries**. ([cantata.ae](https://cantata.ae/products/ramadan-gift-box-golden-leaf-collection?utm_source=openai))  \n\n## If you want “gift delivery” platforms that operate across GCC\n- **Floward** — operates across several GCC countries and does gifts/occasion delivery (selection depends on country). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Floward?utm_source=openai))  \n\nIf you tell me **which GCC country/city** you’re sending to and your **budget** (and whether you want **perfume vs skincare/makeup**), I’ll narrow it to the best 3 options with the fastest delivery.",
+  "citations": [
+    {
+      "title": "Beauty Bundle Gift Set | 7-Piece Complete Care Package AED 225 – Pinky Cosmetics",
+      "url": "https://pinky-cosmetics.com/products/beauty-bundle-gift-set-7-piece-complete-care-package?utm_source=openai"
+    },
+    {
+      "title": "Shipping and Delivery – Bodiva",
+      "url": "https://trybodiva.com/en/pages/shipping-and-delivery?utm_source=openai"
+    },
+    {
+      "title": "Gift Sets - Buy Perfume Gift Sets | Emirates Pride",
+      "url": "https://emiratespride.com/ae/gift-sets/?utm_source=openai"
+    },
+    {
+      "title": "Al Saada Set - TEABALATER | NICHE HAUTE PARFUMERIE",
+      "url": "https://teabalater.com/product/al-saada-set/?utm_source=openai"
+    },
+    {
+      "title": "Abyaat collection – Oudh Al Anfar Perfumes",
+      "url": "https://oudhalanfar.com/products/abyaat-collection?utm_source=openai"
+    },
+    {
+      "title": "Buy EID Gift Box - Golden Leaf Collection from AED443 in Dubai | Cantata",
+      "url": "https://cantata.ae/products/ramadan-gift-box-golden-leaf-collection?utm_source=openai"
+    },
+    {
+      "title": "Floward",
+      "url": "https://en.wikipedia.org/wiki/Floward?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "gcc-eid-beauty-gift",
+  "query_text": "Where can I order an Eid beauty gift in the GCC?",
+  "search_performed": true,
+  "trial_index": 1
+}

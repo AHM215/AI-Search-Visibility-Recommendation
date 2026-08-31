@@ -1,0 +1,10 @@
+{
+  "answer_text": "Here are online beauty retailers known for carrying a wide range of brands (including major, indie, and often “clean”/luxury options), with broad category coverage across skincare, makeup, hair, and fragrance:\n\n- **Sephora** – Very large multi-brand selection across makeup, skincare, hair, and fragrance; strong discovery tools and reviews.\n- **Ulta Beauty** – Wide range spanning drugstore to prestige; especially broad in haircare and tools.\n- **Cult Beauty** – Strong mix of trending and niche brands (especially skincare); UK-based with international shipping in many regions.\n- **Space NK** – Curated but wide luxury/niche assortment; strong skincare and fragrance selection.\n- **Lookfantastic** – Very large catalog across beauty and hair; frequent bundles and promos (UK-based, ships internationally).\n- **Dermstore** – Broad “dermatologist-backed” skincare plus hair and devices; strong for clinical brands.\n- **SkinStore** – Similar to Dermstore with a wide skincare/hair focus and many established brands.\n- **Revolve Beauty** – Growing assortment of popular and premium brands, especially skincare and “clean” beauty.\n- **Harrods Beauty / Selfridges Beauty** – Department-store breadth with many luxury brands (availability and shipping depend on location).\n- **Beauty Bay** – Wide selection, strong on makeup and palettes; carries both mainstream and indie brands (UK-based).\n- **ASOS Face + Body** – Broad, trend-driven selection across skincare, hair, and body, mixing affordable and midrange brands.\n\nIf you tell me your country/region and what categories you care about most (skincare vs. makeup vs. hair vs. fragrance), I can narrow this to the best options that ship to you and match your price range.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "ungrounded",
+  "query_id": "global-online-beauty-retailers",
+  "query_text": "Which online beauty retailers have a wide range of brands?",
+  "search_performed": false,
+  "trial_index": 0
+}

@@ -1,0 +1,23 @@
+{
+  "answer_text": "For bridal beauty shopping in the Gulf (GCC), these are consistently solid, “safe” picks (good brand selection + reliable delivery/returns in the region):\n\n- **SEPHORA Middle East (online)** – Best if you want prestige makeup/skincare and bridal staples (long-wear foundation, setting sprays, lashes, minis for a bridal kit). Sephora runs dedicated Middle East country sites. ([sephora.com](https://www.sephora.com/beauty/international-websites?msockid=008a422fe04265bc35c454ace1af64f5&utm_source=openai))  \n- **Nice One (KSA + Gulf)** – One of the biggest regional e-commerce beauty players; strong for makeup, skincare, and **perfumes** (great for bridal fragrance shopping). ([group.niceonesa.com](https://group.niceonesa.com/en?utm_source=openai))  \n- **Faces (Chalhoub-backed)** – Another major GCC beauty destination; useful to compare against Nice One on price/promos and overlapping brands. ([hassalna.com](https://www.hassalna.com/en/uae/blog/nice-one-vs-faces-online-beauty-gulf?utm_source=openai))  \n\nIf you tell me **which Gulf country you’re in** (UAE, KSA, Kuwait, Qatar, Bahrain, Oman) and whether you’re shopping more for **makeup**, **skincare**, or **perfume**, I’ll narrow it to 1–2 best options and a quick bridal shopping checklist.",
+  "citations": [
+    {
+      "title": "International Websites | Sephora",
+      "url": "https://www.sephora.com/beauty/international-websites?msockid=008a422fe04265bc35c454ace1af64f5&utm_source=openai"
+    },
+    {
+      "title": "Nice one | IR",
+      "url": "https://group.niceonesa.com/en?utm_source=openai"
+    },
+    {
+      "title": "Nice One vs Faces: two Gulf online beauty stores compared | Hassalna",
+      "url": "https://www.hassalna.com/en/uae/blog/nice-one-vs-faces-online-beauty-gulf?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "gcc-bridal-beauty-shopping",
+  "query_text": "Which online store is good for bridal beauty shopping in the Gulf?",
+  "search_performed": true,
+  "trial_index": 0
+}

@@ -1,0 +1,10 @@
+{
+  "answer_text": "You can buy Korean skincare online from a mix of Korea-based retailers (big selection, often best pricing) and US-based/authorized stores (faster shipping, easier returns, lower counterfeit risk). Here are solid options:\n\n## Korea-based retailers (huge selection)\n- **Olive Young Global** (official Korean drugstore chain; lots of sets and promos)\n- **YesStyle** (large catalog; check “ships within” times since some items are stocked later)\n- **StyleKorean** (frequent sales; good for bundles)\n- **Jolse** (often good prices; periodic free-shipping promos)\n- **Stylevana** (good prices but shipping can be slow depending on stock status)\n\n## US-based / authorized retailers (faster, easier returns)\n- **Soko Glam** (curated; strong educational content)\n- **Peach & Lily** (curated; good for starter routines)\n- **Ulta** and **Sephora** (carry select K-beauty brands; easy returns)\n- **Amazon**: only if you buy from the **brand’s official storefront** or clearly listed **authorized sellers** (avoid “too good to be true” pricing)\n\n## Buy direct from brand sites (best for authenticity)\nIf you already know the brand you want (e.g., COSRX, Beauty of Joseon, Laneige, Innisfree, et al.), buying from the **official brand website** or official marketplace store is usually the safest.\n\n## Quick safety checks (to avoid fakes)\n- Prefer **official retailers** or **brand-authorized** sellers.\n- Be cautious with deep discounts on marketplaces.\n- Check **seller name**, **return policy**, and **recent reviews** (with photos).\n\nIf you tell me your budget, skin type (oily/dry/sensitive/acne-prone), and what you want to target (acne, pigmentation, anti-aging, barrier repair), I can recommend which store + a few product picks that are easy to find there.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "global-buy-korean-skincare",
+  "query_text": "Where can I buy Korean skincare online?",
+  "search_performed": false,
+  "trial_index": 0
+}

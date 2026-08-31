@@ -1,0 +1,31 @@
+{
+  "answer_text": "Trusted places to buy luxury fragrance online (U.S.):\n\n### 1) Major authorized beauty retailers\n- **Sephora (online)** – large luxury/designer selection and a dedicated luxury-fragrance shop section. ([sephora.com](https://www.sephora.com/shop/luxury-fragrance?utm_source=openai))  \n- **Nordstrom (online)** – luxury beauty/fragrance with strong brand partnerships (e.g., CHANEL via Nordstrom as an authorized retailer). ([nordstrom.com](https://www.nordstrom.com/brands/chanel--3503?utm_source=openai))  \n\n### 2) Luxury department stores (reliable supply chain, strong customer service)\n- **Bloomingdale’s (online fragrance shop)** – wide range including many luxury and niche brands. ([bloomingdales.com](https://www.bloomingdales.com/shop/makeup-perfume-beauty/fragrance?id=14716&utm_source=openai))  \n- **Saks Fifth Avenue / Neiman Marcus** – commonly listed by brands as authorized prestige department-store partners (good choices for luxury fragrance). ([giorgioarmanibeauty-usa.com](https://www.giorgioarmanibeauty-usa.com/authorized-retailers/customer-service-armani-stores.html?utm_source=openai))  \n\n### 3) Brand websites (most “bulletproof” for authenticity)\n- Buying **direct from the fragrance house** (CHANEL, Dior, Tom Ford, etc.) is usually the safest option if the brand ships to you.\n\n---\n\n## Quick safety checklist (to avoid counterfeits/grey market)\n- Look for wording like **“authorized retailer”** (many brands publish authorized-retailer lists). ([giorgioarmanibeauty-usa.com](https://www.giorgioarmanibeauty-usa.com/authorized-retailers/customer-service-armani-stores.html?utm_source=openai))  \n- Be cautious with **too-good-to-be-true pricing**, missing batch codes, or “tester/no box” listings.\n- Prefer retailers with easy returns and clear seller identity (avoid unknown third‑party marketplace sellers).\n\nIf you tell me **which fragrance/brand** (and your budget), I can suggest the best retailer(s) among these for that specific scent and any legit ways to sample first.",
+  "citations": [
+    {
+      "title": "Luxury & Designer Perfumes & Colognes | Sephora",
+      "url": "https://www.sephora.com/shop/luxury-fragrance?utm_source=openai"
+    },
+    {
+      "title": "Shop Chanel Beauty Online | Chanel ® Authorized Retailer | Nordstrom",
+      "url": "https://www.nordstrom.com/brands/chanel--3503?utm_source=openai"
+    },
+    {
+      "title": "Fragrances, Perfume & Cologne - Bloomingdale's",
+      "url": "https://www.bloomingdales.com/shop/makeup-perfume-beauty/fragrance?id=14716&utm_source=openai"
+    },
+    {
+      "title": "Customer Service — Authorized Retailers — Armani Beauty",
+      "url": "https://www.giorgioarmanibeauty-usa.com/authorized-retailers/customer-service-armani-stores.html?utm_source=openai"
+    },
+    {
+      "title": "Customer Service — Authorized Retailers — Armani Beauty",
+      "url": "https://www.giorgioarmanibeauty-usa.com/authorized-retailers/customer-service-armani-stores.html?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "global-buy-luxury-fragrance",
+  "query_text": "Where can I buy luxury fragrance online from a trusted retailer?",
+  "search_performed": true,
+  "trial_index": 2
+}

@@ -1,0 +1,47 @@
+{
+  "answer_text": "Here are reliable places to buy **niche fragrance online with delivery in Kuwait** (mix of luxury retailers + Kuwait-based niche stores):\n\n## Big retailers with niche sections (easy delivery/returns)\n- **Ounass Kuwait – “Niche Fragrances”** (curated niche + luxury, ships to Kuwait). ([kuwait.ounass.com](https://kuwait.ounass.com/men/grooming/shop-by/niche-fragrances?utm_source=openai))  \n- **Sephora Middle East (Kuwait) – Niche Collection** (their niche/“online only” selection varies). ([sephora.me](https://www.sephora.me/kw-en/shop/fragrance/niche-collection/C300501?utm_source=openai))  \n- **Bloomingdale’s Kuwait – Niche Fragrance category** (good for higher-end niche and gift sets). ([en.bloomingdales.com.kw](https://en.bloomingdales.com.kw/beauty-fragrance-niche-fragrance/?utm_source=openai))  \n\n## Kuwait-based / Kuwait-focused niche stores (often better pricing/availability)\n- **Tonkakwt (The Art of Scent)** – Kuwait-based niche curation + delivery. ([tonkakwt.com](https://tonkakwt.com/?utm_source=openai))  \n- **Niche Lounge (FGC Parfumerie)** – niche perfume store focused on Kuwait. ([nichelounge.shop](https://nichelounge.shop/product-category/niche-perfume-kuwait/?utm_source=openai))  \n- **BEI** – niche fragrances category with Kuwait shopping focus. ([bei.shop](https://bei.shop/category/niche-fragrances?utm_source=openai))  \n- **FAWAAH** – niche perfumes collection (Kuwait/GCC-focused). ([fawaah.com](https://fawaah.com/collections/niche?utm_source=openai))  \n\n## Quick tips to avoid fakes (especially with “too good to be true” discounts)\n- Prefer **authorized retailers** (Bloomingdale’s/Sephora/Ounass) for very expensive houses. ([en.bloomingdales.com.kw](https://en.bloomingdales.com.kw/beauty-fragrance-niche-fragrance/?utm_source=openai))  \n- If buying from marketplaces/discount apps, check the seller’s authenticity/return policy carefully (local discussions often flag deep discounts as a risk). ([reddit.com](https://www.reddit.com/r/Kuwait/comments/1h9gf4d?utm_source=openai))  \n\nIf you tell me **(1) the brand(s)** you’re hunting (e.g., Xerjoff, Amouage, Nishane, Roja, Frederic Malle, etc.) and **(2) your budget range**, I can point you to the best 2–3 options that are most likely to have it in stock in Kuwait.",
+  "citations": [
+    {
+      "title": "Shop Niche Fragrances For Men Online in Kuwait | Ounass",
+      "url": "https://kuwait.ounass.com/men/grooming/shop-by/niche-fragrances?utm_source=openai"
+    },
+    {
+      "title": "Elegant Niche Fragrances for a Unique Experience ≡ Sephora",
+      "url": "https://www.sephora.me/kw-en/shop/fragrance/niche-collection/C300501?utm_source=openai"
+    },
+    {
+      "title": "Shop Luxury Niche Perfumes Collection Online In Kuwait",
+      "url": "https://en.bloomingdales.com.kw/beauty-fragrance-niche-fragrance/?utm_source=openai"
+    },
+    {
+      "title": "Tonkakwt — The Art of Scent",
+      "url": "https://tonkakwt.com/?utm_source=openai"
+    },
+    {
+      "title": "Luxury Perfumes in Kuwait | Niche Perfumes | Niche Lounge",
+      "url": "https://nichelounge.shop/product-category/niche-perfume-kuwait/?utm_source=openai"
+    },
+    {
+      "title": "Buy Niche Fragrances and Perfumes Online in Kuwait | BEI",
+      "url": "https://bei.shop/category/niche-fragrances?utm_source=openai"
+    },
+    {
+      "title": "Niche Perfumes– FAWAAH",
+      "url": "https://fawaah.com/collections/niche?utm_source=openai"
+    },
+    {
+      "title": "Shop Luxury Niche Perfumes Collection Online In Kuwait",
+      "url": "https://en.bloomingdales.com.kw/beauty-fragrance-niche-fragrance/?utm_source=openai"
+    },
+    {
+      "title": "Buying Perfumes from Sheeel?",
+      "url": "https://www.reddit.com/r/Kuwait/comments/1h9gf4d?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "gcc-buy-fragrance-kuwait",
+  "query_text": "Where can I buy niche fragrance online in Kuwait?",
+  "search_performed": true,
+  "trial_index": 0
+}

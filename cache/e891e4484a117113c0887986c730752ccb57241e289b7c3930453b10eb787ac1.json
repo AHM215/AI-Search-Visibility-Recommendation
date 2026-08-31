@@ -1,0 +1,39 @@
+{
+  "answer_text": "يعتمد “الأفضل” على نوع تجهيزك: هل تركيزك **مكياج/عناية أصلية** أم **عطور** أم **تجهيزات العروس كاملة (لانجري/روب/اكسسوارات/هدايا)**. هذه خيارات قوية ومجربة في الخليج:\n\n## 1) للمكياج والعناية الأصلية (وأمان الشراء)\n**سيفورا الخليج (Sephora ME)**  \nأفضل خيار إذا أولويتك الأصالة وتنوع الماركات وسياسة إرجاع/خدمة عملاء واضحة، ومناسب لتجهيز كامل (بشرة + مكياج + عطور). ([sephora.me](https://www.sephora.me/ae-ar?scgid=C304&utm_source=openai))\n\n## 2) للعطور والعروض (خصوصًا إذا تبين تنويع الهدايا والعطور)\n**قولدن سنت (Golden Scent)**  \nقوي جدًا بالعطور وكثرة العروض وتوفر خيارات كثيرة. ([ae.goldenscent.com](https://ae.goldenscent.com/?utm_source=openai))\n\n## 3) لتجهيزات العروس “كاملة” غير التجميل (روب/بجامات/لانجري/اكسسوارات)\n**دار سُلا (Sula Store)**  \nمتخصص بتجهيزات العروس كفكرة “كل تفاصيل العروسة” أكثر من كونه متجر مكياج فقط. ([sulastore.com](https://sulastore.com/ar/?utm_source=openai))\n\n## 4) خيار سعودي لمنتجات العناية/المكياج بأسلوب بوتيك\n**روز بيوتي (Rosbeauty)**  \nمتجر سعودي يركز على العناية والمكياج والعطور مع تشكيلة واسعة. ([rosbeauty.com](https://rosbeauty.com/?utm_source=openai))\n\n---\n\n### ترشيحي السريع (بدون تفاصيل إضافية)\n- إذا تبين “متجر واحد يجهز لك كل شيء تجميلي بأمان”: **سيفورا**. ([sephora.me](https://www.sephora.me/ae-ar?scgid=C304&utm_source=openai))  \n- إذا العطور هي الأساس + تبين أسعار وعروض: **قولدن سنت**. ([ae.goldenscent.com](https://ae.goldenscent.com/?utm_source=openai))  \n- إذا تبين روب/بجامات/تجهيزات ليلة الزفاف وملحقاتها: **دار سُلا**. ([sulastore.com](https://sulastore.com/ar/?utm_source=openai))  \n\nإذا قلتي لي: **أي دولة بالخليج** (السعودية/الإمارات/الكويت/قطر/البحرين/عُمان) + **ميزانيتك** + هل عندك **بشرة حساسة**؟ أعطيك قائمة مشتريات جاهزة (سكنكير + مكياج + عطر + تجهيزات) مع بدائل حسب الميزانية.",
+  "citations": [
+    {
+      "title": "مكياج ⋅ عطور ⋅ عناية بالبشرة ⋅ جمال ≡ سيفورا",
+      "url": "https://www.sephora.me/ae-ar?scgid=C304&utm_source=openai"
+    },
+    {
+      "title": "عطور ومستحضرات تجميل أصلية بأسعار مميزة من قولدن سنت",
+      "url": "https://ae.goldenscent.com/?utm_source=openai"
+    },
+    {
+      "title": "دار سلا - كل تفاصيل العروسه",
+      "url": "https://sulastore.com/ar/?utm_source=openai"
+    },
+    {
+      "title": "متجر روز بيوتي | مكياج و عناية أصلية بأسعار تنافسية",
+      "url": "https://rosbeauty.com/?utm_source=openai"
+    },
+    {
+      "title": "مكياج ⋅ عطور ⋅ عناية بالبشرة ⋅ جمال ≡ سيفورا",
+      "url": "https://www.sephora.me/ae-ar?scgid=C304&utm_source=openai"
+    },
+    {
+      "title": "عطور ومستحضرات تجميل أصلية بأسعار مميزة من قولدن سنت",
+      "url": "https://ae.goldenscent.com/?utm_source=openai"
+    },
+    {
+      "title": "دار سلا - كل تفاصيل العروسه",
+      "url": "https://sulastore.com/ar/?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "ar-bridal-beauty-shopping",
+  "query_text": "ما أفضل متجر إلكتروني لتجهيز مستحضرات العروس في الخليج؟",
+  "search_performed": true,
+  "trial_index": 1
+}

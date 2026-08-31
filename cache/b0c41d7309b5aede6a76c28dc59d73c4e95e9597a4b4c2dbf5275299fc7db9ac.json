@@ -1,0 +1,31 @@
+{
+  "answer_text": "You’ve got a few solid, GCC-friendly options for **Eid beauty gifts** (gift sets, perfume, skincare, plus gift wrap / notes):\n\n## Best “order online + deliver in the GCC” options\n\n### 1) **Sephora Middle East (UAE/KSA/KW/BH/OM/QA)**\nGood for: popular makeup/skincare sets, perfume gift sets, easy gifting.  \nTheir FAQ lists coverage across **Saudi, Kuwait, Bahrain, Oman, Qatar** (and UAE via stores/online depending on market). ([sephora.me](https://www.sephora.me/ae-en/faq?utm_source=openai))\n\n### 2) **Ounass (delivers across the GCC)**\nGood for: premium/luxury beauty and fragrance gift sets, fast delivery in some cities.  \nOunass states it **delivers within the GCC**; note they mention some **Qatar restrictions for certain beauty items** (dangerous goods). ([ounass.ae](https://www.ounass.ae/content/faq?utm_source=openai))  \nThey also run Ramadan/Eid edits and gift sets regularly. ([en-saudi.ounass.com](https://en-saudi.ounass.com/women/ramadan-shop/ramadan-ready?utm_source=openai))\n\n### 3) **Golden Scent (GCC fragrance specialist)**\nGood for: perfume-heavy Eid gifting, usually gift-wrapping options.  \nTheir app listing notes **gift wrap** availability, and they have delivery support pages. ([play.google.com](https://play.google.com/store/apps/details?hl=en-US&id=com.goldenscent.c3po&utm_source=openai))\n\n### 4) **Local/Regional perfume brands doing Eid packaging**\nIf you want something explicitly “Eid Mubarak” themed, some regional perfume brands sell **Eid-labeled gift sets** with GCC delivery (example: LAVERNE’s Eid mini set listing mentions Eid packaging and UAE delivery). ([laverne.co](https://laverne.co/products/laverne-eid-gifts-5-perfumes?utm_source=openai))\n\n## Quick question so I can narrow it down\nWhich GCC country are you sending to (UAE, KSA, Kuwait, Qatar, Bahrain, Oman), and what’s your budget range? I’ll suggest 3–5 specific gift sets that ship there.",
+  "citations": [
+    {
+      "title": "Beauty Products, Makeup, Perfume & Skincare ≡ Sephora",
+      "url": "https://www.sephora.me/ae-en/faq?utm_source=openai"
+    },
+    {
+      "title": "FAQs | Ounass",
+      "url": "https://www.ounass.ae/content/faq?utm_source=openai"
+    },
+    {
+      "title": "Shop Ramadan-Ready For Women Online in Saudi | Ounass",
+      "url": "https://en-saudi.ounass.com/women/ramadan-shop/ramadan-ready?utm_source=openai"
+    },
+    {
+      "title": "Golden Scent قولدن سنت - Apps on Google Play",
+      "url": "https://play.google.com/store/apps/details?hl=en-US&id=com.goldenscent.c3po&utm_source=openai"
+    },
+    {
+      "title": "LAVERNE Eid Mini Set – 5 perfume x10ml Gift",
+      "url": "https://laverne.co/products/laverne-eid-gifts-5-perfumes?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "gcc-eid-beauty-gift",
+  "query_text": "Where can I order an Eid beauty gift in the GCC?",
+  "search_performed": true,
+  "trial_index": 0
+}

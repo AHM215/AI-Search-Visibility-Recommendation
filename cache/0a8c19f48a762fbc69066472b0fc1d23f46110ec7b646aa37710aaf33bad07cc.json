@@ -1,0 +1,31 @@
+{
+  "answer_text": "For **luxury fragrance online** with the lowest risk of counterfeits, stick to **brand-owned sites** and **major authorized retailers** (department stores / prestige beauty chains). When you want discounts, use reputable **discounters**—but understand some operate in the “gray market” (authentic goods, not always supplied directly by the brand).\n\n## Lowest-risk (authorized) places to buy online\n- **The brand’s official website** (e.g., Armani Beauty’s site) or the brand’s “authorized retailers” list. ([giorgioarmanibeauty-usa.com](https://www.giorgioarmanibeauty-usa.com/authorized-retailers/customer-service-armani-stores.html?utm_source=openai))  \n- **Prestige beauty + department stores** (widely trusted for authenticity):\n  - **Sephora**\n  - **Ulta Beauty**\n  - **Nordstrom**\n  - **Saks Fifth Avenue**\n  - **Neiman Marcus**\n  - **Bloomingdale’s**\n  - **Bergdorf Goodman** ([giorgioarmanibeauty-usa.com](https://www.giorgioarmanibeauty-usa.com/customer-service/faqs/customer-service-faqs.html?utm_source=openai))  \n\n## Discount options (reputable, but not always “authorized” by brands)\nThese are commonly used for deals and state they sell authentic products:\n- **FragranceX** (authenticity guarantee stated) ([fragrancex.com](https://www.fragrancex.com/customerservice/customerservice.html?utm_source=openai))  \n- **FragranceNet** (states products are sourced from trusted brands/authorized distributors and are authentic) ([fragrancenet.com](https://www.fragrancenet.com/help/aboutus?utm_source=openai))  \n\n## Quick safety checklist (especially if the price looks “too good”)\n- Prefer **brand site / authorized retailers** first. ([fragrancefragrance.com](https://www.fragrancefragrance.com/learn/where-to-buy-fragrance-safely-online?utm_source=openai))  \n- Avoid **marketplaces** (third-party sellers on large platforms) unless you can verify the seller is authorized.\n- Confirm the store has a clear **returns policy**, **customer service contact**, and normal payment options.\n\nIf you tell me **which fragrance/brand** (and whether you want **best price vs. absolute lowest risk**), I can point you to the best retailer options for that specific one.",
+  "citations": [
+    {
+      "title": "Customer Service — Authorized Retailers — Armani Beauty",
+      "url": "https://www.giorgioarmanibeauty-usa.com/authorized-retailers/customer-service-armani-stores.html?utm_source=openai"
+    },
+    {
+      "title": "Customer Service FAQ — Frequently Asked Questions — Armani Beauty",
+      "url": "https://www.giorgioarmanibeauty-usa.com/customer-service/faqs/customer-service-faqs.html?utm_source=openai"
+    },
+    {
+      "title": "Our Guarantee & Customer Service | FragranceX",
+      "url": "https://www.fragrancex.com/customerservice/customerservice.html?utm_source=openai"
+    },
+    {
+      "title": "FragranceNet.com® - About Us",
+      "url": "https://www.fragrancenet.com/help/aboutus?utm_source=openai"
+    },
+    {
+      "title": "Where to Buy Fragrance Safely Online — Channels, Red Flags & How to Verify | Fragrance Fragrance",
+      "url": "https://www.fragrancefragrance.com/learn/where-to-buy-fragrance-safely-online?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "global-buy-luxury-fragrance",
+  "query_text": "Where can I buy luxury fragrance online from a trusted retailer?",
+  "search_performed": true,
+  "trial_index": 0
+}

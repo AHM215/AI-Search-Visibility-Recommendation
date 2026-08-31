@@ -1,0 +1,23 @@
+{
+  "answer_text": "إليك **أفضل متاجر التجميل عبر الإنترنت (خصوصًا داخل الولايات المتحدة)**، مع “متى تختارين كل متجر”:\n\n## 1) Sephora\n- الأفضل لـ: تشكيلة ضخمة من الماركات (مكياج/عناية/عطور) + عينات وتجارب ومزايا عضوية.\n- ميزة مهمة: **شحن قياسي مجاني لأعضاء Beauty Insider** في الولايات المتحدة (العضوية مجانية). ([sephora.com](https://www.sephora.com/beauty/shipping-information?utm_source=openai))\n\n## 2) Ulta Beauty\n- الأفضل لـ: الجمع بين **دراغستور + هاي إند** (مثل NYX وMaybelline إلى جانب ماركات أغلى) + عروض متكررة.\n- ميزة مهمة: برنامج نقاط قوي، ومزايا شحن تختلف حسب المستوى (مثل Diamond). ([ulta.com](https://www.ulta.com/rewards/faq?utm_source=openai))\n\n## 3) Dermstore\n- الأفضل لـ: **العناية بالبشرة “الطبية/الدرماتولوجية”** (كثير من الماركات المتخصصة) وغالبًا عروض/باندلز مفيدة.\n- ميزة مهمة: **شحن مجاني عادةً عند حد أدنى للطلب** (مثل 50$ حسب صفحة الشحن). ([dermstore.com](https://www.dermstore.com/c/info/delivery-information/?utm_source=openai))\n\n## 4) المتاجر “الرسمية” للماركات (Brand Official Sites)\n- الأفضل لـ: ضمان الأصالة 100% + إصدارات محدودة + هدايا مع الطلب (GWP) أحيانًا أفضل من المتاجر الجامعة.\n- أمثلة شائعة: The Ordinary، Paula’s Choice، Fenty Beauty، Rare Beauty… (حسب ما تستخدمين).\n\n---\n\n### كيف تختارين بسرعة؟\n- **مكياج + تجربة درجات + مكافآت وعينات:** Sephora  \n- **ميزانية متنوعة + عروض كثيرة + دراغستور:** Ulta  \n- **روتين عناية متقدم/علاجي:** Dermstore  \n\nإذا قلتي لي:\n1) بلد/ولاية الشحن، 2) ميزانيتك التقريبية، 3) تركيزك (مكياج/عناية/عطور/شعر)، و4) نوع بشرتك—أرتّب لك قائمة “أفضل 3” مناسبة لك مع بدائل أرخص.",
+  "citations": [
+    {
+      "title": "Shipping Information - US | Sephora",
+      "url": "https://www.sephora.com/beauty/shipping-information?utm_source=openai"
+    },
+    {
+      "title": "Ulta Beauty Rewards FAQs | Ulta Beauty",
+      "url": "https://www.ulta.com/rewards/faq?utm_source=openai"
+    },
+    {
+      "title": "Delivery Information",
+      "url": "https://www.dermstore.com/c/info/delivery-information/?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "ar-best-beauty-stores",
+  "query_text": "ما أفضل متاجر التجميل عبر الإنترنت؟",
+  "search_performed": true,
+  "trial_index": 0
+}

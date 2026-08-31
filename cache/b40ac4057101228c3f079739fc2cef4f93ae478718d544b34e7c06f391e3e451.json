@@ -1,0 +1,75 @@
+{
+  "answer_text": "Below is a practical comparison of **reputable online beauty retailers that (as of their current delivery pages) ship to Kuwait**, with the main tradeoffs (speed, assortment, customs, restrictions). Shipping rules and restricted items change often, so it’s worth confirming at checkout for your exact cart (especially perfumes/aerosols).\n\n## Quick comparison (best use-cases)\n\n| Retailer | Best for | Why choose it | Watch-outs |\n|---|---|---|---|\n| **Sephora Middle East (sephora.me/kw-en)** | Mainstream prestige + fast regional fulfillment | Kuwait-local storefront and pricing in KWD; generally easiest for returns/support in-region ([sephora.me](https://www.sephora.me/kw-en?scgid=C7684&utm_source=openai)) | Brand assortment can differ vs US/EU Sephora; some product categories may be limited by local rules |\n| **Cult Beauty (UK)** | Curated “cult” skincare/makeup | Ships to Kuwait with country-specific delivery info + clear restrictions list ([cultbeauty.com](https://www.cultbeauty.com/c/info/delivery-information/middle-east/kuwait/?utm_source=openai)) | Some categories restricted (e.g., CBD; other shipping restrictions) ([cultbeauty.com](https://www.cultbeauty.com/c/info/delivery-information/middle-east/kuwait/?utm_source=openai)) |\n| **LOOKFANTASTIC (Middle East site)** | Broad UK/EU assortment + frequent discounts | Has a Middle East delivery page listing Kuwait and notes customs/fees may apply ([lookfantastic.ae](https://www.lookfantastic.ae/c/info/delivery-information/?utm_source=openai)) | Duties/taxes typically not included; final cost may rise on delivery ([lookfantastic.ae](https://www.lookfantastic.ae/c/info/delivery-information/?utm_source=openai)) |\n| **Space NK (UK)** | Luxury/edit brands (incl. “harder-to-find” UK picks) | Lists **Kuwait** with stated price/time (they show up to ~5 days) ([help.spacenk.com](https://help.spacenk.com/hc/en-us/articles/5749510109853-Delivery-Options?utm_source=openai)) | Shipping is expensive (their Kuwait rate is high) ([help.spacenk.com](https://help.spacenk.com/hc/en-us/articles/5749510109853-Delivery-Options?utm_source=openai)) |\n| **iHerb** | Value skincare, K-beauty staples, body/hair, plus supplements | Dedicated Kuwait shipping policy page; typically strong logistics options ([iherb.com](https://www.iherb.com/shipping/kw?utm_source=openai)) | Product eligibility varies by carrier/customs; heat-sensitive items can be an issue in summer (choose “climate controlled” if offered) ([iherb.com](https://www.iherb.com/shipping/kw?utm_source=openai)) |\n| **StyleKorean (K-beauty)** | K-beauty deals and big hauls | Shows Kuwait shipping (Aramex) and a stated order cap due to customs delays ([stylekorean.com](https://www.stylekorean.com/shop/cs_shipping_delivery_m.php?utm_source=openai)) | Higher shipping unless you hit their free-shipping threshold; order value limit (they state ≤ $500 excl. shipping) ([stylekorean.com](https://www.stylekorean.com/shop/cs_shipping_delivery_m.php?utm_source=openai)) |\n| **YesStyle (Asian beauty)** | Mix of K/J beauty + accessories | Their help pages list **Kuwait** as a shipping destination ([yesstyle.com](https://www.yesstyle.com/en/help/section.html/hsi.732?utm_source=openai)) | Shipping speed can vary a lot depending on “in-stock/ships in X days”; customs/import responsibility language is strict ([tour.yesstyle.com](https://tour.yesstyle.com/en/terms-of-use/help/section.html/hsi.804?utm_source=openai)) |\n\n## Notes that matter specifically for Kuwait\n- **Fragrance, aerosols, alcohol-based sprays, and some actives** are commonly restricted in air transport or by destination rules; always check each retailer’s restricted-item guidance (Cult Beauty explicitly lists Kuwait restrictions). ([cultbeauty.com](https://www.cultbeauty.com/c/info/delivery-information/middle-east/kuwait/?utm_source=openai))  \n- **Duties/taxes**: some retailers clearly warn these may be collected on delivery (e.g., LOOKFANTASTIC), while others vary by courier/DDP options. ([lookfantastic.ae](https://www.lookfantastic.ae/c/info/delivery-information/?utm_source=openai))  \n- **Summer heat**: if you’re ordering vitamin C, retinoids, or “melty” products, prioritize faster shipping and/or temperature-controlled options (iHerb explicitly mentions “climate controlled” selection). ([iherb.com](https://www.iherb.com/shipping/kw?utm_source=openai))  \n\n## If you tell me what you’re buying, I’ll narrow it down\n1) What category: **skincare / makeup / hair / fragrance**?  \n2) Do you care most about **lowest total cost**, **fastest delivery**, or **hard-to-find brands**?  \n3) Any “must-have” brands (e.g., The Ordinary, Rare Beauty, COSRX, Dior, etc.)?",
+  "citations": [
+    {
+      "title": "Beauty Products, Makeup, Perfume & Skincare ≡ Sephora",
+      "url": "https://www.sephora.me/kw-en?scgid=C7684&utm_source=openai"
+    },
+    {
+      "title": "Kuwait | Cult Beauty",
+      "url": "https://www.cultbeauty.com/c/info/delivery-information/middle-east/kuwait/?utm_source=openai"
+    },
+    {
+      "title": "Kuwait | Cult Beauty",
+      "url": "https://www.cultbeauty.com/c/info/delivery-information/middle-east/kuwait/?utm_source=openai"
+    },
+    {
+      "title": "LOOKFANTASTIC Delivery to UAE, KSA, Kuwait and Middle East",
+      "url": "https://www.lookfantastic.ae/c/info/delivery-information/?utm_source=openai"
+    },
+    {
+      "title": "LOOKFANTASTIC Delivery to UAE, KSA, Kuwait and Middle East",
+      "url": "https://www.lookfantastic.ae/c/info/delivery-information/?utm_source=openai"
+    },
+    {
+      "title": "Delivery Options – SPACE.NK.apothecary",
+      "url": "https://help.spacenk.com/hc/en-us/articles/5749510109853-Delivery-Options?utm_source=openai"
+    },
+    {
+      "title": "Delivery Options – SPACE.NK.apothecary",
+      "url": "https://help.spacenk.com/hc/en-us/articles/5749510109853-Delivery-Options?utm_source=openai"
+    },
+    {
+      "title": "iHerb Shipping Info & Policy | iHerb",
+      "url": "https://www.iherb.com/shipping/kw?utm_source=openai"
+    },
+    {
+      "title": "iHerb Shipping Info & Policy | iHerb",
+      "url": "https://www.iherb.com/shipping/kw?utm_source=openai"
+    },
+    {
+      "title": "stylekorean.com | Shop Korea's Best Skincare & Beauty Products",
+      "url": "https://www.stylekorean.com/shop/cs_shipping_delivery_m.php?utm_source=openai"
+    },
+    {
+      "title": "stylekorean.com | Shop Korea's Best Skincare & Beauty Products",
+      "url": "https://www.stylekorean.com/shop/cs_shipping_delivery_m.php?utm_source=openai"
+    },
+    {
+      "title": "",
+      "url": "https://www.yesstyle.com/en/help/section.html/hsi.732?utm_source=openai"
+    },
+    {
+      "title": "",
+      "url": "https://tour.yesstyle.com/en/terms-of-use/help/section.html/hsi.804?utm_source=openai"
+    },
+    {
+      "title": "Kuwait | Cult Beauty",
+      "url": "https://www.cultbeauty.com/c/info/delivery-information/middle-east/kuwait/?utm_source=openai"
+    },
+    {
+      "title": "LOOKFANTASTIC Delivery to UAE, KSA, Kuwait and Middle East",
+      "url": "https://www.lookfantastic.ae/c/info/delivery-information/?utm_source=openai"
+    },
+    {
+      "title": "iHerb Shipping Info & Policy | iHerb",
+      "url": "https://www.iherb.com/shipping/kw?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "gcc-compare-beauty-retailers",
+  "query_text": "Compare online beauty retailers that deliver to Kuwait.",
+  "search_performed": true,
+  "trial_index": 1
+}

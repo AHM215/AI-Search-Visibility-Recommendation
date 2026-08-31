@@ -1,0 +1,27 @@
+{
+  "answer_text": "There isn’t one single “best” site for *all* home-gym equipment—because the best choice depends on whether you care most about **strength gear quality**, **price**, or **easy returns**. Here are the best picks by situation:\n\n## Best overall for serious home-gym strength setups (rack/bench/attachments): **REP Fitness**\nIf you’re building a real home gym (rack + bench + storage + cable add-ons), REP is often the best balance of **quality, price, and home-gym-focused product ecosystem**. Many comparisons and reviews consistently position REP as “Rogue-adjacent” quality at a lower total build cost. ([homefitnessbrief.com](https://homefitnessbrief.com/small-space-testing/workout-equipment-retailer-comparison?utm_source=openai))\n\n## Best premium / “buy once, cry once” strength equipment: **Rogue Fitness**\nIf you want top-tier build quality and a strong reputation in the strength community—especially for racks, bars, and plates—Rogue is a great bet (usually at a higher price). Check warranty and shipping details per item. ([roguefitness.com](https://www.roguefitness.com/warranty?utm_source=openai))\n\n## Best budget strength equipment (you’re optimizing cost): **Titan Fitness**\nTitan is often the value play for racks and big pieces when you want to spend less—just go in expecting more variability in finish/packaging and pay close attention to warranty/returns on the exact item. ([homefitnessbrief.com](https://homefitnessbrief.com/small-space-testing/workout-equipment-retailer-comparison?utm_source=openai))\n\n## Best if you want easy shipping/returns and broad selection: **Amazon** (and sometimes **Dick’s/Costco**)\nThese are great for “filler” items (bands, mats, basic adjustable benches/dumbbells, accessories), and for people who prioritize **fast delivery + straightforward returns** over specialty strength ecosystems. ([homefitnessbrief.com](https://homefitnessbrief.com/small-space-testing/workout-equipment-retailer-comparison?utm_source=openai))\n\n---\n\n### If you tell me these 3 things, I’ll give you a single best recommendation (and 2 backups)\n1) What are you buying? (rack/bench/bar/plates, dumbbells, treadmill/bike/rower, functional trainer, etc.)  \n2) Your budget range (roughly).  \n3) Your priority: lowest cost vs best quality vs easiest returns.",
+  "citations": [
+    {
+      "title": "The Best Retailers for Workout Equipment in 2026 | FitAtHome",
+      "url": "https://homefitnessbrief.com/small-space-testing/workout-equipment-retailer-comparison?utm_source=openai"
+    },
+    {
+      "title": "Product Warranty Information | Rogue Fitness",
+      "url": "https://www.roguefitness.com/warranty?utm_source=openai"
+    },
+    {
+      "title": "The Best Retailers for Workout Equipment in 2026 | FitAtHome",
+      "url": "https://homefitnessbrief.com/small-space-testing/workout-equipment-retailer-comparison?utm_source=openai"
+    },
+    {
+      "title": "The Best Retailers for Workout Equipment in 2026 | FitAtHome",
+      "url": "https://homefitnessbrief.com/small-space-testing/workout-equipment-retailer-comparison?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "global-buy-sports-equipment",
+  "query_text": "What is the best website to buy home gym equipment?",
+  "search_performed": true,
+  "trial_index": 0
+}

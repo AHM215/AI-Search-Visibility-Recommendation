@@ -1,0 +1,10 @@
+{
+  "answer_text": "You can buy Korean skincare online from a mix of Korea-based retailers, global K‑beauty specialists, and mainstream stores. Here are reliable options (pick based on shipping speed, selection, and return policies):\n\n## Korea-based retailers (often best selection/prices)\n- **Olive Young Global** (oliveyoung.com) – Huge selection; frequent promos; reliable.\n- **StyleKorean** (stylekorean.com) – Big deals and bundles; ships internationally.\n- **YesStyle** (yesstyle.com) – Broad range; shipping times vary by item availability.\n- **Jolse** (jolse.com) – Often good discounts; international shipping.\n- **Stylevana** (stylevana.com) – Low prices; shipping can be slower depending on stock.\n\n## International K‑beauty specialists (fast shipping/curated)\n- **Soko Glam** (sokoglam.com) – Curated picks; solid educational content; typically higher prices.\n- **Peach & Lily** (peachandlily.com) – Strong curation; good for sensitive-skin options.\n- **KoreaDepart** (koreadepart.com) – Long-standing; wide selection.\n\n## Mainstream retailers (easy returns, sometimes limited selection)\n- **Amazon** – Convenient, but quality varies by seller; stick to official brand stores or “sold by/ships from” reputable sources.\n- **Ulta / Sephora** – Limited K‑beauty ranges but straightforward returns and faster domestic shipping.\n- **iHerb** – Some K‑beauty brands; generally reliable fulfillment.\n\n## Tips to avoid fakes / bad batches\n- Prefer **official brand shops** or authorized retailers.\n- Check **seller reputation**, return policy, and whether items are **in stock** (some sites list long backorders).\n- Be cautious with prices that are **far below** typical retail.\n\nIf you tell me your country/region and the brands you’re looking for (e.g., Beauty of Joseon, COSRX, Round Lab), I can suggest the best sites for shipping speed and price.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "ungrounded",
+  "query_id": "global-buy-korean-skincare",
+  "query_text": "Where can I buy Korean skincare online?",
+  "search_performed": false,
+  "trial_index": 0
+}

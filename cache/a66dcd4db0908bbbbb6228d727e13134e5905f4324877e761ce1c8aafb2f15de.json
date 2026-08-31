@@ -1,0 +1,10 @@
+{
+  "answer_text": "A good place to order depends on (1) how fast you need it delivered, (2) your budget, and (3) whether you want “safe crowd-pleasers” or something more curated. Here are reliable options (US/UK-leaning; tell me your country for tighter picks):\n\n## Fast + reliable (best if delivery date matters)\n- **Amazon** (Prime): huge selection, fastest; choose “Ships from and sold by” for fewer issues.\n- **Sephora**: solid gift sets, easy e-gift cards, usually dependable shipping and easy returns.\n- **Ulta Beauty**: great for mid-priced sets and hair tools; often has promos.\n\n## Curated / “nice gift” presentation\n- **Nordstrom Beauty**: strong brands + good packaging/return experience.\n- **Cult Beauty** (UK/EU, ships internationally): trendy, curated edit and sets.\n- **Lookfantastic** (UK/EU/US): lots of gift sets; frequent discounts.\n\n## Clean / indie / luxury\n- **Credo Beauty** (clean-focused): well-curated “clean beauty” gifts.\n- **Dermstore**: skincare-forward, including dermatologist brands.\n- **Space NK** (UK/US): luxury skincare/makeup and polished gifting.\n\n## “Can’t miss” options\n- **Gift sets** (skincare minis, fragrance discovery sets, lip/hand care sets): easy wins when you don’t know exact shades.\n- **E-gift cards** (Sephora/Ulta/Nordstrom): safest if you’re unsure of preferences.\n\nIf you tell me:\n1) **delivery country + deadline**,  \n2) **budget**,  \n3) **gift recipient** (age/skin type/sensitive?) and whether they like **makeup, skincare, fragrance, hair**,  \nI’ll recommend 3–5 specific gift options and the best retailer to buy from for on-time delivery.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "ungrounded",
+  "query_id": "global-beauty-gift-delivery",
+  "query_text": "Where should I order a beauty gift online for delivery?",
+  "search_performed": false,
+  "trial_index": 0
+}

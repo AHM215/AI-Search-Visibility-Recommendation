@@ -1,0 +1,10 @@
+{
+  "answer_text": "A strong option in the Gulf is **Sephora Middle East (sephora.ae / Sephora app)**—it’s widely available across GCC countries and has a big selection of **bridal-friendly makeup, skincare, fragrance, and tools**, plus reliable delivery and easy returns.\n\nOther good Gulf-focused options:\n- **Ounass** (premium beauty + luxury gifting, fast delivery in UAE/KSA)\n- **Namshi** (good deals and popular brands, especially in UAE/KSA)\n- **Faces / Wojooh** (regional beauty retailer, often strong on sets and promos)\n- **Amazon.ae / Amazon.sa** (convenient, but stick to “sold by Amazon” or authorized sellers for authenticity)\n\nIf you tell me your country (UAE, KSA, Kuwait, etc.) and your budget/brands, I can suggest the best store and a bridal shopping checklist.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "ungrounded",
+  "query_id": "gcc-bridal-beauty-shopping",
+  "query_text": "Which online store is good for bridal beauty shopping in the Gulf?",
+  "search_performed": false,
+  "trial_index": 1
+}

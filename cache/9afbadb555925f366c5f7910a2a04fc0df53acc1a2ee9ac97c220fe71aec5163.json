@@ -1,0 +1,19 @@
+{
+  "answer_text": "No single site is “best” for everyone in Kuwait (price and approval depend on your car, driver profile, and coverage type), but **the best all-around *website* to start with is usually an insurance-comparison marketplace** so you can see multiple quotes side-by-side.\n\n### Best pick (Kuwait-focused comparison website)\n**yallacompare (Kuwait)** — widely used to compare and request car insurance quotes online in Kuwait. ([app.yallacompare.com](https://app.yallacompare.com/insurance/kwt/ar/car?utm_source=openai))\n\n### If you want to buy directly from an insurer (not a comparison site)\nIf you already know the company you want, you can quote/buy on the insurer’s own site (example: **Al Ahleia Insurance** has online quote/purchase flows for motor insurance). ([alahleia.com](https://www.alahleia.com/?utm_source=openai))\n\n### Quick way to choose “best” for you\n- **Cheapest legal option:** compare **third-party** quotes first.\n- **Best protection:** compare **comprehensive** policies, but sort by **excess (deductible)** + add-ons (agency repair, replacement car, roadside, etc.), not just price.\n\nIf you tell me **third-party vs comprehensive**, your **car year/make/value**, and whether you need **agency repair / replacement car**, I’ll suggest which site/workflow is most likely to get you the best deal.",
+  "citations": [
+    {
+      "title": "Car Insurance in Kuwait | yallacompare",
+      "url": "https://app.yallacompare.com/insurance/kwt/ar/car?utm_source=openai"
+    },
+    {
+      "title": "Al Ahleia Insurance Co.S.A.K.",
+      "url": "https://www.alahleia.com/?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "gcc-car-insurance-online",
+  "query_text": "Which website offers the best car insurance in Kuwait?",
+  "search_performed": true,
+  "trial_index": 1
+}

@@ -1,0 +1,10 @@
+{
+  "answer_text": "Here are reliable places to buy makeup online in Saudi Arabia (with delivery inside KSA). I’ll group them by type so you can pick what fits your budget and brand preferences:\n\n## Major beauty retailers (wide selection)\n- **Sephora Saudi Arabia** – big range of international brands, frequent sets/promos.  \n  https://www.sephora.sa\n- **FACES (KSA)** – strong selection of prestige brands and fragrances.  \n  https://www.faces.com/sa-en\n- **Nice One** – very popular in KSA for makeup, skincare, haircare (mix of affordable + mid-range).  \n  https://niceonesa.com\n- **Golden Scent** – makeup, perfume, skincare; often has discounts.  \n  https://goldenscent.com\n\n## Pharmacy / health & beauty chains (good for derm brands + essentials)\n- **Nahdi Online** – convenient for everyday beauty and skincare staples.  \n  https://www.nahdionline.com\n- **Whites** – makeup + skincare, including many pharmacy brands.  \n  https://www.whites.net\n\n## Marketplaces (huge variety; verify seller authenticity)\n- **Amazon.sa** – broad selection; choose “Sold by Amazon” or authorized sellers when possible.  \n  https://www.amazon.sa\n- **Noon** – lots of deals; check seller ratings and return policy.  \n  https://www.noon.com/saudi-en/\n\n## Affordable / drugstore-style makeup\n- **iHerb (ships to KSA)** – good for budget-friendly brands and tools; delivery times vary.  \n  https://sa.iherb.com\n\n### Tips to avoid counterfeits (especially on marketplaces)\n- Prefer **official retailer sites** or **authorized sellers**.\n- Check: seller name, reviews, return policy, and product batch/expiry info.\n- If the price is dramatically lower than everywhere else, be cautious.\n\nIf you tell me **your city (e.g., Riyadh/Jeddah)** and whether you prefer **luxury or affordable**, I can recommend the best options for fast delivery and specific brands.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "ungrounded",
+  "query_id": "gcc-buy-makeup-saudi",
+  "query_text": "Where can I buy makeup online in Saudi Arabia?",
+  "search_performed": false,
+  "trial_index": 0
+}

@@ -1,0 +1,39 @@
+{
+  "answer_text": "Here are reliable places you can buy **niche fragrances online with delivery in Kuwait** (from Kuwait-based retailers first, then department stores/marketplaces):\n\n## Kuwait-based niche specialists (good for curated selections + faster delivery)\n- **Tonkakwt** (Kuwait-based niche perfume retailer) ([tonkakwt.com](https://tonkakwt.com/?utm_source=openai))  \n- **Niche Lounge (by FGC Parfumerie)** (niche-focused boutique with online shop in Kuwait) ([nichelounge.shop](https://nichelounge.shop/?utm_source=openai))  \n- **BEI – Niche Fragrances** (curated niche category) ([bei.shop](https://bei.shop/category/niche-fragrances?utm_source=openai))  \n- **FAWAAH – Niche Perfumes** ([fawaah.com](https://fawaah.com/collections/niche?utm_source=openai))  \n\n## Kuwait department store (niche sections online)\n- **Bloomingdale’s Kuwait – Niche Fragrance** ([en.bloomingdales.com.kw](https://en.bloomingdales.com.kw/beauty-fragrance-niche-fragrance/?utm_source=openai))  \n\n## Big Kuwait beauty/perfume marketplaces (selection varies by seller/brand)\n- **Boutiqaat** (large Kuwait e-commerce platform; often has perfumes/fragrance listings) ([boutiqat.com](https://www.boutiqat.com/?utm_source=openai))  \n\n## Brand-direct (if you want official local availability)\n- **ARMAF Kuwait – “Armaf Niche” collection** ([armaf.com.kw](https://armaf.com.kw/collections/armaf-niche?utm_source=openai))  \n\n### Quick tip to avoid fakes\nPrefer **brand-direct** or **known local retailers** (like the niche specialists + department stores above). If you use a marketplace, check that the listing clearly indicates it’s sold/fulfilled by the main store or an authorized seller.\n\nIf you tell me **which brand(s)** (e.g., Nishane, Amouage, Xerjoff, MFK, PdM, Initio, etc.) and your **budget**, I can point you to the best 2–3 options that stock them in Kuwait right now.",
+  "citations": [
+    {
+      "title": "Tonkakwt — The Art of Scent",
+      "url": "https://tonkakwt.com/?utm_source=openai"
+    },
+    {
+      "title": "Niche Perfumes in Kuwait | Shop Online at Niche Lounge",
+      "url": "https://nichelounge.shop/?utm_source=openai"
+    },
+    {
+      "title": "Buy Niche Fragrances and Perfumes Online in Kuwait | BEI",
+      "url": "https://bei.shop/category/niche-fragrances?utm_source=openai"
+    },
+    {
+      "title": "Niche Perfumes– FAWAAH",
+      "url": "https://fawaah.com/collections/niche?utm_source=openai"
+    },
+    {
+      "title": "Shop Luxury Niche Perfumes Collection Online In Kuwait",
+      "url": "https://en.bloomingdales.com.kw/beauty-fragrance-niche-fragrance/?utm_source=openai"
+    },
+    {
+      "title": "Boutiqat | Online Shopping Mall",
+      "url": "https://www.boutiqat.com/?utm_source=openai"
+    },
+    {
+      "title": "ARMAF NICHE",
+      "url": "https://armaf.com.kw/collections/armaf-niche?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "gcc-buy-fragrance-kuwait",
+  "query_text": "Where can I buy niche fragrance online in Kuwait?",
+  "search_performed": true,
+  "trial_index": 1
+}

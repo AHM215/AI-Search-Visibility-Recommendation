@@ -1,0 +1,10 @@
+{
+  "answer_text": "You can buy Korean skincare online from a mix of **K-beauty specialists** (best for curated selections and hard-to-find brands) and **major retailers** (best for easy returns and faster shipping in the US).\n\n### K-beauty specialists (wide selection, authentic-focused)\n- **Olive Young Global** (big Korean retailer; great for trending products and sets)\n- **StyleKorean** (frequent promos; huge catalog)\n- **YesStyle** (very broad Asian beauty selection; check ship times per item)\n- **Jolse** (often good deals; ships from Korea)\n- **Stylevana** (good pricing; shipping can vary by item availability)\n- **Soko Glam** (US-based, curated; typically faster US shipping)\n\n### Major retailers that carry K-beauty (easy checkout/returns)\n- **Amazon** (convenient, but stick to *official brand storefronts* or reputable sellers)\n- **Ulta** and **Sephora** (more limited selection, easier returns)\n- **Target** (select K-beauty brands; convenient shipping/returns)\n\n### Tips to avoid counterfeits (especially on marketplaces)\n- Prefer **the brand’s official site** or an **authorized retailer** list on the brand website.\n- On Amazon/marketplaces, verify: **“Sold by”** the brand or a known retailer, lots of recent reviews, and normal (not too-good-to-be-true) pricing.\n- Be cautious with products that should be sealed (e.g., sunscreens, vitamin C, retinoids) if packaging looks off.\n\nIf you tell me **your skin type (oily/dry/sensitive/acne-prone)** and what you’re shopping for (sunscreen, cleanser, toner, moisturizer, etc.), I can suggest the best store(s) for that category and a few reliable product picks.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "global-buy-korean-skincare",
+  "query_text": "Where can I buy Korean skincare online?",
+  "search_performed": false,
+  "trial_index": 2
+}

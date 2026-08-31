@@ -1,0 +1,43 @@
+{
+  "answer_text": "Here are online beauty stores that are consistently “best” across the GCC (good authenticity, range, delivery/returns, and customer experience). I’m focusing on retailers that serve **multiple GCC countries** or are **top-tier in the biggest markets (KSA/UAE)**.\n\n## Best all-around (prestige + mainstream)\n- **Sephora Middle East** (UAE/KSA and wider GCC presence): best for prestige makeup/skincare, sets, and brand launches; generally the safest bet for authenticity. ([harpersbazaararabia.com](https://www.harpersbazaararabia.com/hbanews/best-beauty-brands-sephora-middle-east?utm_source=openai))  \n- **FACES (Wojooh)**: strong prestige mix (makeup + fragrance), frequent promos, popular across the Gulf. ([couponatt.com](https://couponatt.com/faces-wajoh-vs-sephora-best-beauty-cosmetics-perfume-store-online-gulf-2026/?utm_source=openai))  \n- **Ounass**: luxury “beauty hall” experience—great for higher-end skincare, fragrance, and gifting (especially UAE/KSA). ([thenationalnews.com](https://www.thenationalnews.com/lifestyle/15-beauty-websites-that-offer-speedy-delivery-to-the-uae-1.878729?utm_source=openai))  \n\n## Best for deals + fast delivery (marketplace/superstore style)\n- **noon (Beauty)**: huge selection and aggressive pricing; best when the listing is **sold by noon / official stores** (marketplace sellers can vary). ([noon.com](https://www.noon.com/uae-en/beauty/?utm_source=openai))  \n\n## Best for Saudi Arabia (KSA) specifically (big catalogs + strong pricing)\n- **Nice One**: one of the largest KSA-focused beauty e-retailers; strong for makeup + personal care + fragrance in one basket. ([hassalna.com](https://www.hassalna.com/en/uae/blog/nice-one-vs-faces-online-beauty-gulf?utm_source=openai))  \n- **Golden Scent**: particularly strong for **fragrance** (including lots of niche/Arabic fragrance). ([code-khasem.com](https://code-khasem.com/ar-sa/blog/golden-scent-vs-nice-one-which-one-is-better?utm_source=openai))  \n\n## Best “health & beauty retailer” option (omnichannel)\n- **Watsons** (UAE, Bahrain, KSA, Qatar): great for drugstore skincare/haircare and K-beauty selections, with a more controlled retail supply chain than pure marketplaces. ([alfuttaim.com](https://www.alfuttaim.com/en/our-brands/watsons/?utm_source=openai))  \n\n## Best for skincare specialists\n- **BasharaCare** (UAE-based, ships regionally): reputable for dermatologist-style skincare brands and curated routines. ([basharacare.com](https://www.basharacare.com/ae_en/home?utm_source=openai))  \n\n---\n\n### Quick way to choose\n- Want **guaranteed authenticity + prestige brands** → **Sephora / FACES / Ounass**\n- Want **best prices** (and you can check seller/ratings) → **noon**\n- You’re in **Saudi** and want the biggest local options → **Nice One / Golden Scent**\n- Want **drugstore + pharmacy-style beauty** → **Watsons**\n- Want **skincare-first specialist** → **BasharaCare**\n\nIf you tell me **which GCC country you’re in**, and what you buy most (fragrance vs makeup vs skincare/K-beauty), I’ll shortlist the top 3 and what each is best for.",
+  "citations": [
+    {
+      "title": "The Cult Beauty Brands to Shop at Sephora Middle East Right Now",
+      "url": "https://www.harpersbazaararabia.com/hbanews/best-beauty-brands-sephora-middle-east?utm_source=openai"
+    },
+    {
+      "title": "وجوه أم سيفورا — أيهما أفضل لشراء مستحضرات التجميل والعطور أونلاين في الخليج 2026؟",
+      "url": "https://couponatt.com/faces-wajoh-vs-sephora-best-beauty-cosmetics-perfume-store-online-gulf-2026/?utm_source=openai"
+    },
+    {
+      "title": "15 beauty websites that offer speedy delivery to the UAE | The National",
+      "url": "https://www.thenationalnews.com/lifestyle/15-beauty-websites-that-offer-speedy-delivery-to-the-uae-1.878729?utm_source=openai"
+    },
+    {
+      "title": "Beauty & Fragrance UAE | Best Price Offers | Dubai, Abu Dhabi",
+      "url": "https://www.noon.com/uae-en/beauty/?utm_source=openai"
+    },
+    {
+      "title": "Nice One vs Faces: two Gulf online beauty stores compared | Hassalna",
+      "url": "https://www.hassalna.com/en/uae/blog/nice-one-vs-faces-online-beauty-gulf?utm_source=openai"
+    },
+    {
+      "title": "أيهما أفضل قولدن سنت أو نايس ون السعودية | مقارنة شاملة",
+      "url": "https://code-khasem.com/ar-sa/blog/golden-scent-vs-nice-one-which-one-is-better?utm_source=openai"
+    },
+    {
+      "title": "Watsons Health, Beauty & Skincare Trends | Al-Futtaim",
+      "url": "https://www.alfuttaim.com/en/our-brands/watsons/?utm_source=openai"
+    },
+    {
+      "title": "BasharaCare : Your Professional Skincare Store in UAE",
+      "url": "https://www.basharacare.com/ae_en/home?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "gcc-best-online-beauty-stores",
+  "query_text": "What are the best online beauty stores in the GCC?",
+  "search_performed": true,
+  "trial_index": 2
+}

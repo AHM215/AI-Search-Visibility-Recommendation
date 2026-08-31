@@ -1,0 +1,10 @@
+{
+  "answer_text": "Here are online beauty retailers known for carrying a wide range of brands (across prestige, indie, and/or mass), especially in the U.S.:\n\n- **Sephora** — very broad “prestige” assortment (makeup, skincare, fragrance, hair), lots of exclusives.\n- **Ulta Beauty** — one of the widest mixes because it carries both **mass + prestige** plus haircare and tools.\n- **Nordstrom Beauty** — strong selection of luxury/prestige plus good discovery, gifts, and services.\n- **Macy’s Beauty** / **Bloomingdale’s Beauty** — large department-store assortments, especially fragrance and classic heritage brands.\n- **Dermstore** — broad **skincare-heavy** catalog, including many dermatologist-backed and clinical brands.\n- **Cult Beauty** (UK-based, ships internationally) — wide curated mix of trending/indie + established brands.\n- **Space NK** — strong prestige/luxury mix with many cult skincare and makeup brands.\n- **Lookfantastic** — very large catalog, especially skincare/haircare; multiple regions.\n- **ASOS Face + Body** — good range of accessible/trending brands (more “mass” and social-media-popular).\n- **Revolve Beauty** — smaller than the giants but strong variety in “trendy” prestige/clean-leaning brands.\n\nIf you tell me (1) your budget (drugstore vs prestige), (2) what categories you shop most (skincare/makeup/hair/fragrance), and (3) whether you care about clean-only or indie-heavy, I can narrow this to the best 3–5 for you.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "global-online-beauty-retailers",
+  "query_text": "Which online beauty retailers have a wide range of brands?",
+  "search_performed": false,
+  "trial_index": 1
+}

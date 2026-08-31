@@ -1,0 +1,59 @@
+{
+  "answer_text": "Here are some of the strongest, most reliable **online beauty stores used across the GCC (UAE, Saudi, Kuwait, Qatar, Bahrain, Oman)**—split into “regional specialists” vs “international sites that ship to the Gulf.”\n\n## Best GCC-based / GCC-focused online beauty stores\n- **FACES (Faces.sa + other country sites)** — One of the biggest beauty omni-retailers in the region (prestige makeup, skincare, fragrance, hair). Strong for authenticity + brand selection across the Gulf. ([faces.sa](https://www.faces.sa/en?utm_source=openai))  \n- **Nice One (KSA-based)** — Very popular in Saudi and often competitive on price/promos with fast delivery; broad mix across beauty categories. (If you’re in KSA, it’s usually a top comparison-check store.) ([cma.org.sa](https://cma.org.sa/en/Market/Prospectuses/Documents/nice_one_en.pdf?utm_source=openai))  \n- **BasharaCare (Dubai-based)** — Strong for skincare (including premium/derm-leaning brands) and explicitly delivers across the GCC. ([basharacare.com](https://www.basharacare.com/en_kw/about-basharacare?utm_source=openai))  \n- **Ounass (UAE)** — Best-known as a luxury fashion/beauty destination in the Gulf; great for premium/designer beauty and gifting. ([centreduluxe.com](https://centreduluxe.com/wp-content/uploads/2022/05/PPT_Jasmina-Banda_Chalhoub-group.pdf?utm_source=openai))  \n- **Noon (UAE/KSA)** — “Marketplace + retail” style, great for deals and fast delivery options in some cities; best when you’re price-shopping or want quick basics—just pay attention to seller/source. ([supermall.noon.com](https://supermall.noon.com/saudi-en/women-selfcare/?utm_source=openai))  \n\n## Best international beauty sites that commonly ship to GCC (esp. UAE)\n- **Cult Beauty** — Popular for harder-to-find brands; does ship to the UAE (with some brand restrictions). ([cultbeauty.co.uk](https://www.cultbeauty.co.uk/c/info/delivery-information/middle-east/united-arab-emirates/?utm_source=openai))  \n- **Beauty Bay** — Good for variety/indie brands; ships internationally (destination availability depends on what’s enabled at checkout). ([beautybay.com](https://www.beautybay.com/s/terms-and-conditions/?utm_source=openai))  \n\n## Quick “which should I use?” shortcuts\n- **Prestige + guaranteed authenticity:** FACES, Ounass ([faces.sa](https://www.faces.sa/en?utm_source=openai))  \n- **Best for KSA shopping/value:** Nice One (and compare with FACES for the same item) ([hassalna.com](https://www.hassalna.com/en/uae/blog/nice-one-vs-faces-online-beauty-gulf?utm_source=openai))  \n- **Skincare-heavy carts:** BasharaCare ([basharacare.com](https://www.basharacare.com/en_kw/about-basharacare?utm_source=openai))  \n- **Deals / fast delivery / convenience:** Noon ([supermall.noon.com](https://supermall.noon.com/saudi-en/women-selfcare/?utm_source=openai))  \n- **Brands not stocked locally:** Cult Beauty, Beauty Bay ([thenationalnews.com](https://www.thenationalnews.com/lifestyle/15-beauty-websites-that-offer-speedy-delivery-to-the-uae-1.878729?utm_source=openai))  \n\nIf you tell me **which GCC country you’re in** and whether you’re shopping for **makeup vs skincare vs fragrance** (plus your budget: drugstore / mid / luxury), I can narrow this to the best 3–5 options for your exact use case.",
+  "citations": [
+    {
+      "title": "Shop for Perfume, Makeup, Skin Care & Cosmetics | FACES KSA",
+      "url": "https://www.faces.sa/en?utm_source=openai"
+    },
+    {
+      "title": "نَايِس وَن\nNICE ONEProspectus of Nice One Beauty D",
+      "url": "https://cma.org.sa/en/Market/Prospectuses/Documents/nice_one_en.pdf?utm_source=openai"
+    },
+    {
+      "title": "About BasharaCare Basharacare.com",
+      "url": "https://www.basharacare.com/en_kw/about-basharacare?utm_source=openai"
+    },
+    {
+      "title": "PowerPoint Presentation",
+      "url": "https://centreduluxe.com/wp-content/uploads/2022/05/PPT_Jasmina-Banda_Chalhoub-group.pdf?utm_source=openai"
+    },
+    {
+      "title": "Beauty KSA | 30-75% OFF | Riyadh, Jeddah | noon",
+      "url": "https://supermall.noon.com/saudi-en/women-selfcare/?utm_source=openai"
+    },
+    {
+      "title": "United Arab Emirates | Cult Beauty",
+      "url": "https://www.cultbeauty.co.uk/c/info/delivery-information/middle-east/united-arab-emirates/?utm_source=openai"
+    },
+    {
+      "title": "Terms and Conditions | Beauty Bay",
+      "url": "https://www.beautybay.com/s/terms-and-conditions/?utm_source=openai"
+    },
+    {
+      "title": "Shop for Perfume, Makeup, Skin Care & Cosmetics | FACES KSA",
+      "url": "https://www.faces.sa/en?utm_source=openai"
+    },
+    {
+      "title": "Nice One vs Faces: two Gulf online beauty stores compared | Hassalna",
+      "url": "https://www.hassalna.com/en/uae/blog/nice-one-vs-faces-online-beauty-gulf?utm_source=openai"
+    },
+    {
+      "title": "About BasharaCare Basharacare.com",
+      "url": "https://www.basharacare.com/en_kw/about-basharacare?utm_source=openai"
+    },
+    {
+      "title": "Beauty KSA | 30-75% OFF | Riyadh, Jeddah | noon",
+      "url": "https://supermall.noon.com/saudi-en/women-selfcare/?utm_source=openai"
+    },
+    {
+      "title": "15 beauty websites that offer speedy delivery to the UAE | The National",
+      "url": "https://www.thenationalnews.com/lifestyle/15-beauty-websites-that-offer-speedy-delivery-to-the-uae-1.878729?utm_source=openai"
+    }
+  ],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "grounded",
+  "query_id": "gcc-best-online-beauty-stores",
+  "query_text": "What are the best online beauty stores in the GCC?",
+  "search_performed": true,
+  "trial_index": 0
+}

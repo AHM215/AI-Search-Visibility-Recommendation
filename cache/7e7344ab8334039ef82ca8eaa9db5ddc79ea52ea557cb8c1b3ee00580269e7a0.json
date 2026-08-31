@@ -1,0 +1,10 @@
+{
+  "answer_text": "For bridal beauty shopping in the Gulf, **Ounass Beauty** is one of the best options. It’s GCC-focused (especially UAE/KSA), carries a strong mix of luxury beauty brands, and is known for **fast regional delivery** and **curated edits** that are great for bridal makeup, skincare prep, haircare, and fragrance.\n\nOther solid Gulf options (depending on your country) include:\n- **Sephora Middle East** (wide selection, easy returns, frequent sets)\n- **Faces** (good regional availability and promos)\n- **Nice One** (popular in Saudi for beauty deals and variety)\n\nIf you tell me which Gulf country you’re in (UAE, KSA, Kuwait, Qatar, Bahrain, Oman) and whether you want luxury-only or best value, I can narrow it to the top 1–2 stores for you.",
+  "citations": [],
+  "model_identifier": "openai/gpt-5.2-2025-12-11",
+  "provider_mode": "ungrounded",
+  "query_id": "gcc-bridal-beauty-shopping",
+  "query_text": "Which online store is good for bridal beauty shopping in the Gulf?",
+  "search_performed": false,
+  "trial_index": 2
+}
