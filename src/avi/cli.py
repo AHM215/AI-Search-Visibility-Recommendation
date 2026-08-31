@@ -41,6 +41,7 @@ def _parser() -> argparse.ArgumentParser:
     serve_command.add_argument("--database", type=Path, default=ROOT / "avi.db")
     serve_command.add_argument("--host", default="127.0.0.1")
     serve_command.add_argument("--port", type=int, default=8000)
+    serve_command.add_argument("--cache", type=Path, default=ROOT / "cache")
 
     report_command = commands.add_parser("report")
     report_command.add_argument("run_id")
@@ -117,6 +118,25 @@ def main(
         )
         print(result.run_id)
         return 1 if result.status == "aborted" else 0
+
+    if arguments_namespace.command == "serve":
+        import uvicorn
+
+        from avi.api import build_app
+
+        try:
+            live_provider: Provider | None = CachingProvider(
+                UngroundedOpenAIProvider(), arguments_namespace.cache
+            )
+        except RuntimeError:
+            # No credential: serve stored Runs anyway. Only the ad-hoc Query needs a Provider.
+            live_provider = None
+        uvicorn.run(
+            build_app(arguments_namespace.database, provider=live_provider),
+            host=arguments_namespace.host,
+            port=arguments_namespace.port,
+        )
+        return 0
 
     print(
         render_report(

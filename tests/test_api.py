@@ -134,3 +134,20 @@ def test_a_relevant_adhoc_query_is_scored(seeded_database: Path) -> None:
     assert body["scored"] is True
     assert body["mentioned"] is True
     assert "Boutiqaat" in body["text"]
+
+
+def test_slices_break_visibility_down_by_locale_intent_and_mode(seeded_database: Path) -> None:
+    response = client(seeded_database).get("/runs/run-1/slices")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert set(body) == {"locale", "intent", "provider_mode"}
+    assert body["provider_mode"][0]["relevant_trials"] == 2
+
+
+def test_diagnosis_is_served_and_every_finding_carries_evidence(seeded_database: Path) -> None:
+    response = client(seeded_database).get("/runs/run-1/diagnosis")
+
+    assert response.status_code == 200
+    for finding in response.json():
+        assert finding["answer_ids"] or finding["citation_urls"]

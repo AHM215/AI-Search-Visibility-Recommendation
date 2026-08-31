@@ -1,9 +1,9 @@
 """Streamlit read layer over the HTTP API.
 
-Two views. The dashboard carries the headline figures, the Locale and Intent breakdowns and the
-Diagnosis; the drill-down shows every Trial for one Query with raw Answer text, highlighted
-Mentions and clickable Citations. The drill-down is the one that matters: it is how a reader
-confirms the numbers describe real text.
+Two views. The dashboard carries the headline figures, the Locale, Intent and Provider mode
+breakdowns, and the Diagnosis with the Evidence behind each Finding; the drill-down shows every
+Trial for one Query with raw Answer text, highlighted Mentions and clickable Citations. The
+drill-down is the one that matters: it is how a reader confirms the numbers describe real text.
 
 The UI never calls a Provider directly. It reads the API, whose only live path is the ad-hoc Query.
 """
@@ -61,12 +61,20 @@ def main() -> None:  # pragma: no cover - exercised by running the app
     metrics = fetch(api, f"/runs/{run_id}/metrics")
 
     if view == "Dashboard":
-        render_dashboard(metrics)
+        render_dashboard(
+            metrics,
+            fetch(api, f"/runs/{run_id}/slices"),
+            fetch(api, f"/runs/{run_id}/diagnosis"),
+        )
     else:
         render_drilldown(api, run_id, metrics)
 
 
-def render_dashboard(metrics: dict[str, Any]) -> None:  # pragma: no cover
+def render_dashboard(
+    metrics: dict[str, Any],
+    slices: dict[str, Any],
+    findings: list[dict[str, Any]],
+) -> None:  # pragma: no cover
     st.title("Boutiqaat AI Search Visibility")
     st.caption("Findings describe OpenAI's models, not AI search in general.")
 
@@ -91,6 +99,55 @@ def render_dashboard(metrics: dict[str, Any]) -> None:  # pragma: no cover
         f"{buckets['sometimes']} sometimes",
         f"{buckets['always']} always, {buckets['never']} never",
     )
+
+    st.subheader("Visibility by Locale, Intent and Provider mode")
+    st.caption(
+        "Trials on irrelevant Queries are excluded: absence from a question Boutiqaat could not "
+        "answer is not a failure."
+    )
+    for keyword, heading in (
+        ("locale", "Locale"),
+        ("intent", "Intent"),
+        ("provider_mode", "Provider mode"),
+    ):
+        st.markdown(f"**{heading}**")
+        st.dataframe(
+            [
+                {
+                    heading: row["value"],
+                    "Mentioned": row["mentioned"],
+                    "Relevant Trials": row["relevant_trials"],
+                    "Visibility Rate": f"{(row['visibility_rate'] or 0):.1%}",
+                }
+                for row in slices[keyword]
+            ],
+            use_container_width=True,
+        )
+
+    st.subheader("Diagnosis")
+    if not findings:
+        st.info("No candidate cause was supported by Evidence observed in this Run.")
+    else:
+        st.caption(
+            "Each claim rests on Evidence recorded in this Run. A cause with no supporting "
+            "Evidence is not shown at all."
+        )
+        for finding in findings:
+            with st.expander(finding["cause"], expanded=False):
+                st.write(finding["statement"])
+                if finding["fetched_page_count"] or finding["unfetched_page_count"]:
+                    st.caption(
+                        f"{finding['fetched_page_count']} cited pages fetched, "
+                        f"{finding['unfetched_page_count']} unfetched and excluded from this claim."
+                    )
+                if finding["answer_ids"]:
+                    st.caption(
+                        "Evidence, Answer ids: "
+                        + ", ".join(str(i) for i in finding["answer_ids"])
+                    )
+                for url in finding["citation_urls"][:10]:
+                    st.markdown(f"- [{url}]({url})")
+                st.markdown(f"**What would have to change:** {finding['remedy']}")
 
     st.subheader("Consistency by Query")
     st.caption(

@@ -14,6 +14,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 from avi.detect import detect_mentions
+from avi.diagnose import diagnose
 from avi.ingest import Query, load_brands, load_query_set, select_brand
 from avi.metrics import compute_metrics
 from avi.providers import Provider
@@ -108,6 +109,56 @@ def build_app(
                 metrics.recommendation_strength.answer_ids_by_strength.items()
             },
         }
+
+    @app.get("/runs/{run_id}/slices")
+    def run_slices(run_id: str) -> dict[str, Any]:
+        """Visibility Rate broken down by Locale, Intent and Provider mode."""
+        answers = _answers(run_id)
+        query_set = load_query_set(query_set_path)
+        brand_file = load_brands(brand_path)
+        query_by_id = {query.id: query for query in query_set.queries}
+        dimensions = {
+            "locale": sorted({query_by_id[a.query_id].locale for a in answers}),
+            "intent": sorted({query_by_id[a.query_id].intent for a in answers}),
+            "provider_mode": sorted({a.provider_mode for a in answers}),
+        }
+        result: dict[str, Any] = {}
+        for keyword, values in dimensions.items():
+            rows = []
+            for value in values:
+                sliced = compute_metrics(
+                    answers, query_set.queries, brand_file.seed_competitors, **{keyword: value}
+                )
+                rate = sliced.visibility_rate
+                rows.append(
+                    {
+                        "value": value,
+                        "mentioned": len(rate.mentioned_answer_ids),
+                        "relevant_trials": len(rate.relevant_answer_ids),
+                        "visibility_rate": rate.value,
+                    }
+                )
+            result[keyword] = rows
+        return result
+
+    @app.get("/runs/{run_id}/diagnosis")
+    def run_diagnosis(run_id: str) -> list[dict[str, Any]]:
+        """Evidence-backed Findings. A cause with no supporting Evidence is never returned."""
+        answers = _answers(run_id)
+        query_set = load_query_set(query_set_path)
+        brand_file = load_brands(brand_path)
+        return [
+            {
+                "cause": finding.cause,
+                "statement": finding.statement,
+                "remedy": finding.remedy,
+                "answer_ids": list(finding.answer_ids),
+                "citation_urls": list(finding.citation_urls),
+                "fetched_page_count": finding.fetched_page_count,
+                "unfetched_page_count": finding.unfetched_page_count,
+            }
+            for finding in diagnose(answers, query_set.queries, brand_file.seed_competitors)
+        ]
 
     @app.get("/runs/{run_id}/queries/{query_id}")
     def run_query(run_id: str, query_id: str) -> dict[str, Any]:
